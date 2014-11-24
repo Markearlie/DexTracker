@@ -17,63 +17,83 @@
         <TextView
             android:id="@+id/textView6"
             android:layout_width="0dp"
-            android:layout_weight="1"
             android:layout_height="wrap_content"
+            android:layout_weight="1"
             android:gravity="center"
             android:text="30"
             android:textAppearance="?android:attr/textAppearanceLarge" />
-
     </LinearLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" >
+        android:layout_height="wrap_content"
+        android:layout_marginTop="12dp" >
 
         <TextView
             android:id="@+id/textView1"
             android:layout_width="0dp"
-            android:layout_weight="1"
             android:layout_height="wrap_content"
+            android:layout_weight="1"
             android:gravity="center"
             android:text="A"
             android:textAppearance="?android:attr/textAppearanceLarge" />
 
+        <Space
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1" />
+
         <TextView
             android:id="@+id/textView2"
             android:layout_width="0dp"
-            android:layout_weight="1"
             android:layout_height="wrap_content"
+            android:layout_weight="1"
             android:gravity="center"
             android:text="B"
             android:textAppearance="?android:attr/textAppearanceLarge" />
 
+        <Space
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1" />
+
         <TextView
             android:id="@+id/textView3"
             android:layout_width="0dp"
-            android:layout_weight="1"
             android:layout_height="wrap_content"
+            android:layout_weight="1"
             android:gravity="center"
             android:text="C"
             android:textAppearance="?android:attr/textAppearanceLarge" />
 
+        <Space
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1" />
+
         <TextView
             android:id="@+id/textView4"
             android:layout_width="0dp"
+            android:layout_height="match_parent"
             android:layout_weight="1"
-            android:layout_height="wrap_content"
+            android:adjustViewBounds="false"
             android:gravity="center"
             android:text="D"
             android:textAppearance="?android:attr/textAppearanceLarge" />
 
+        <Space
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1" />
+
         <TextView
             android:id="@+id/textView5"
             android:layout_width="0dp"
-            android:layout_weight="1"
             android:layout_height="wrap_content"
+            android:layout_weight="1"
             android:gravity="center"
             android:text="E"
             android:textAppearance="?android:attr/textAppearanceLarge" />
-
     </LinearLayout>
 
     <FrameLayout
@@ -83,25 +103,26 @@
 
         <TableLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent" >
+            android:layout_height="wrap_content"
+            android:layout_gravity="center" >
 
             <TableRow
                 android:id="@+id/tableRow1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:minHeight="60dp"
-                android:gravity="center_horizontal" >
-                
+                android:gravity="center"
+                android:minHeight="60dp" >
+
                 <Space
-		            android:layout_width="0dp"
-		            android:layout_height="match_parent"
-		            android:layout_weight="1" />
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1" />
 
                 <Button
                     android:id="@+id/button1"
                     android:layout_width="0dp"
-                    android:layout_weight="1"
                     android:layout_height="match_parent"
+                    android:layout_weight="2"
                     android:onClick="numberClick"
                     android:tag="1"
                     android:text="1" />
@@ -109,17 +130,17 @@
                 <Button
                     android:id="@+id/button2"
                     android:layout_width="0dp"
-                    android:layout_weight="1"
                     android:layout_height="match_parent"
+                    android:layout_weight="2"
                     android:onClick="numberClick"
                     android:tag="2"
                     android:text="2" />
-                
+
                 <Button
                     android:id="@+id/button3"
-					android:layout_width="0dp"
-                    android:layout_weight="1"
+                    android:layout_width="0dp"
                     android:layout_height="match_parent"
+                    android:layout_weight="2"
                     android:onClick="numberClick"
                     android:tag="3"
                     android:text="3" />
@@ -127,53 +148,53 @@
                 <Button
                     android:id="@+id/button4"
                     android:layout_width="0dp"
-                    android:layout_weight="1"
                     android:layout_height="match_parent"
+                    android:layout_weight="2"
                     android:onClick="numberClick"
                     android:tag="4"
                     android:text="4" />
-                
-                 <Space
-		            android:layout_width="0dp"
-		            android:layout_height="match_parent"
-		            android:layout_weight="1" />
+
+                <Space
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1" />
             </TableRow>
 
             <TableRow
                 android:id="@+id/tableRow2"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
-                android:minHeight="60dp"
-                android:gravity="center_horizontal" >
-                 
+                android:gravity="center"
+                android:minHeight="60dp" >
+
                 <Space
-		            android:layout_width="0dp"
-		            android:layout_height="match_parent"
-		            android:layout_weight="1" />
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1" />
 
                 <Button
                     android:id="@+id/button5"
                     android:layout_width="0dp"
-                    android:layout_weight="1"
                     android:layout_height="match_parent"
-					android:onClick="numberClick"
+                    android:layout_weight="2"
+                    android:onClick="numberClick"
                     android:tag="5"
                     android:text="5" />
 
                 <Button
                     android:id="@+id/button6"
                     android:layout_width="0dp"
-                    android:layout_weight="1"
                     android:layout_height="match_parent"
-                 	android:onClick="numberClick"
+                    android:layout_weight="2"
+                    android:onClick="numberClick"
                     android:tag="6"
                     android:text="6" />
 
                 <Button
                     android:id="@+id/button7"
                     android:layout_width="0dp"
-                    android:layout_weight="1"
                     android:layout_height="match_parent"
+                    android:layout_weight="2"
                     android:onClick="numberClick"
                     android:tag="7"
                     android:text="7" />
@@ -181,35 +202,35 @@
                 <Button
                     android:id="@+id/button8"
                     android:layout_width="0dp"
-                    android:layout_weight="1"
                     android:layout_height="match_parent"
+                    android:layout_weight="2"
                     android:onClick="numberClick"
                     android:tag="8"
                     android:text="8" />
-                
+
                 <Space
-		            android:layout_width="0dp"
-		            android:layout_height="match_parent"
-		            android:layout_weight="1" />
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1" />
             </TableRow>
 
             <TableRow
                 android:id="@+id/tableRow3"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:minHeight="60dp"
-                android:gravity="center_horizontal" >
-                
+                android:gravity="center"
+                android:minHeight="60dp" >
+
                 <Space
-		            android:layout_width="0dp"
-		            android:layout_height="match_parent"
-		            android:layout_weight="1" />
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1" />
 
                 <Button
                     android:id="@+id/button9"
                     android:layout_width="0dp"
-                    android:layout_weight="1"
                     android:layout_height="match_parent"
+                    android:layout_weight="2"
                     android:onClick="numberClick"
                     android:tag="9"
                     android:text="9" />
@@ -217,8 +238,8 @@
                 <Button
                     android:id="@+id/button10"
                     android:layout_width="0dp"
-                    android:layout_weight="1"
                     android:layout_height="match_parent"
+                    android:layout_weight="2"
                     android:onClick="numberClick"
                     android:tag="10"
                     android:text="10" />
@@ -226,8 +247,8 @@
                 <Button
                     android:id="@+id/button11"
                     android:layout_width="0dp"
-                    android:layout_weight="1"
                     android:layout_height="match_parent"
+                    android:layout_weight="2"
                     android:onClick="numberClick"
                     android:tag="11"
                     android:text="11" />
@@ -235,19 +256,18 @@
                 <Button
                     android:id="@+id/button12"
                     android:layout_width="0dp"
-                    android:layout_weight="1"
                     android:layout_height="match_parent"
+                    android:layout_weight="2"
                     android:onClick="numberClick"
                     android:tag="12"
                     android:text="12" />
-                
+
                 <Space
-		            android:layout_width="0dp"
-		            android:layout_height="match_parent"
-		            android:layout_weight="1" />
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1" />
             </TableRow>
         </TableLayout>
-
     </FrameLayout>
 
 </LinearLayout>

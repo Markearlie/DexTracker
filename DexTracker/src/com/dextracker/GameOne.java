@@ -39,8 +39,10 @@ public class GameOne extends Activity {
         	     }
         	     public void onFinish() {
         	    	 gameStart = false;
+        	    	 
         	    	 tv6.setText("Score:" + score + "  Missed:" + miss);
-        	     }
+        	     				
+				}
         	  }.start();
         }
     };
@@ -51,8 +53,14 @@ public class GameOne extends Activity {
 		setContentView(R.layout.activity_game_one);
 		
 		tv1 = (TextView)findViewById(R.id.textView1);
+		tv1.setBackgroundResource(R.drawable.gray_circle);
+		
 		tv2 = (TextView)findViewById(R.id.textView2);
+		tv2.setBackgroundResource(R.drawable.gray_circle);
+		
 		tv3 = (TextView)findViewById(R.id.textView3);
+		tv3.setBackgroundResource(R.drawable.blue_circle);
+		
 		tv4 = (TextView)findViewById(R.id.textView4);
 		tv5 = (TextView)findViewById(R.id.textView5);
 		tv6 = (TextView)findViewById(R.id.textView6);
@@ -98,6 +106,7 @@ public class GameOne extends Activity {
 		{
 			runnable.run();
 			gameStart = true;
+			resetScore();
 		}
 		//Uses tags assigned to the button in XML to avoid many duplicate methods/case statements
 		int numClicked = Integer.parseInt(v.getTag().toString());
@@ -108,15 +117,24 @@ public class GameOne extends Activity {
 		{
 			score++;
 			adjustOnScreenNums();
+			tv4.setBackgroundResource(R.drawable.green_circle);
 		}
+		//Not correct number!!
 		else
 		{
 			miss++;
 			adjustOnScreenNums();
+			tv4.setBackgroundResource(R.drawable.red_circle);
 		}
 		
 	}
 
+
+	private void resetScore() {
+		score = 0;
+		miss = 0;
+		
+	}
 
 	private void createNumberLabel(){
 		
