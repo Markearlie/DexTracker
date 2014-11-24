@@ -67,7 +67,7 @@ public class GameOne extends Activity {
 		
 		//Testing DataManager
 		
-		//Testing GIT Conection
+		//Testing GIT Conectionsadasd
 		
 		List<Player> listOfPlayers = new ArrayList<Player>();
 		dm = DataManager.getInstance(this);
