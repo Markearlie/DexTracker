@@ -20,5 +20,15 @@ public class NumGen {
 		}
 		return numArray;	
 	}
+	
+	
+	public Integer getRandomNum(){
+		
+		Random rand = new Random();
+		
+			//Random numbers between 1 and 12
+			return rand.nextInt(11)+1;
+			
+	}
 
 }
