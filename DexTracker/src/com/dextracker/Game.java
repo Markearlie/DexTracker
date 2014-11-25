@@ -1,6 +1,5 @@
 package com.dextracker;
 
-import java.util.Date;
 
 import net.epsilonlabs.datamanagementefficient.annotations.Id;
 
@@ -8,12 +7,7 @@ public class Game {
 	@Id
 	private int id;
 	private double playerId, scoreId;
-	private Date date;
-	
-	public enum GameMode{
-		TYPE, SEQUENTIAL, SMASH
-	}
-	private GameMode gm;
+	private String gm;
 
 	
 
@@ -21,11 +15,10 @@ public class Game {
 	public Game() {
 	}
 
-	public Game(double playerId, double scoreId,GameMode gm, Date date) {
+	public Game(double playerId, double scoreId,String gm) {
 		this.playerId = playerId;
 		this.scoreId = scoreId;
 		this.gm = gm;
-		this.date = date;
 	}
 	
 	@Override
@@ -33,8 +26,7 @@ public class Game {
 		return "Game [id=" + id
 				+ ", player=" + playerId
 				+ ", score=" + scoreId 
-				+ ", mode=" + gm
-				+ ", date=" + date +
+				+ ", mode=" + gm +
 				"]";
 	}
 	
@@ -60,11 +52,4 @@ public class Game {
 		this.scoreId = scoreId;
 	}
 
-	public Date getDate() {
-		return date;
-	}
-
-	public void setDate(Date date) {
-		this.date = date;
-	}
 }

@@ -1,5 +1,6 @@
 package com.dextracker;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -7,6 +8,7 @@ import net.epsilonlabs.datamanagementefficient.library.DataManager;
 import android.app.Activity;
 import android.app.Dialog;
 import android.app.DialogFragment;
+import android.content.Context;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.support.v4.app.FragmentActivity;
@@ -24,9 +26,11 @@ public class GameOne extends FragmentActivity {
 	public int[] onScreenNums = new int[5];
 
 	CountDownTimer cdt;
-	boolean gameStart;
+	boolean gameStart,active;
 	TextView tv1, tv2, tv3, tv4, tv5, tv6;
-	
+
+	Context context = GameOne.this;
+
 	//DM TESTING
 	private DataManager dm;
 	private int score, miss;
@@ -34,65 +38,87 @@ public class GameOne extends FragmentActivity {
 		TRUE, FALSE, NONE
 	}
 	private LastNumberState lns = LastNumberState.NONE;
-	
+
 	NumGen ng = new NumGen();
+
+	//Countdown Timer Code
+	Handler handler = new Handler();
+	StoppableRunnable runnable = new StoppableRunnable() {	
+		public void stoppableRun() {
+			{
+				new CountDownTimer(5000, 1000) {
+					public void onTick(long millisUntilFinished) {
+						tv6.setText(Long.toString(millisUntilFinished/1000));
+					}
+					public void onFinish() {
+						// (Active) Prevents crashes when runnable finishes and app is not front of screen
+						if(active)
+						{
+							tv6.setText("FINISHED!");
+							createNumberLabel();
+							FragmentManager fm = getSupportFragmentManager();
+							SubmitScoreDialogFragment submitPopup = new SubmitScoreDialogFragment();
+							submitPopup.setScore(score);
+							submitPopup.setMiss(miss);
+							submitPopup.setContext(context);
+
+							submitPopup.show(fm, "fragment_edit_name");
 	
-	//Countdown Timer Codee
-    Handler handler = new Handler();
-    Runnable runnable = new Runnable() {	
-        public void run() {
-        	 new CountDownTimer(30100, 1000) {
-        		 
-        	     public void onTick(long millisUntilFinished) {
-        	       tv6.setText(Long.toString(millisUntilFinished/1000));
-        	     }
-        	     public void onFinish() {
-        	    	 
-        	    	 FragmentManager fm = getSupportFragmentManager();
-        	         SubmitScoreDialogFragment submitPopup = new SubmitScoreDialogFragment();
-        	         submitPopup.show(fm, "fragment_edit_name");
-        	    	 
-        	    	 gameStart = false;
-        	    	 
-        	    	 tv6.setText("Score:" + score + "  Missed:" + miss);
-        	     				
-				}
-        	  }.start();
-        }
-    };
-	
+							gameStart = false;
+						}
+					}
+
+				}.start();
+			}
+		}
+	};
+
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_game_one);
-		
+
+		//Set static backgrounds in XML	
 		tv1 = (TextView)findViewById(R.id.textView1);
 		tv1.setBackgroundResource(R.drawable.gray_circle);
-		
+
 		tv2 = (TextView)findViewById(R.id.textView2);
 		tv2.setBackgroundResource(R.drawable.gray_circle);
-		
+
 		tv3 = (TextView)findViewById(R.id.textView3);
 		tv3.setBackgroundResource(R.drawable.blue_circle);
-		
+
 		tv4 = (TextView)findViewById(R.id.textView4);
 		tv5 = (TextView)findViewById(R.id.textView5);
 		tv6 = (TextView)findViewById(R.id.textView6);
-		
+
 		createNumberLabel();
-		
-		List<Player> listOfPlayers = new ArrayList<Player>();
-		dm = DataManager.getInstance(this);
-		dm.open();
-		
-		listOfPlayers = dm.getAll(Player.class);
-		for(Player p: listOfPlayers)
-		{
-			Log.i("Player+" ,p.toString());
-		}
-		
-		
-		
+
+
+	}
+	@Override
+	protected void onRestart()
+	{
+		super.onRestart();
+		createNumberLabel();
+		Log.i("Activity","Restarted");
+	}
+
+	@Override
+	protected void onResume()
+	{
+		active=true;
+		super.onResume();
+		createNumberLabel();
+		Log.i("Activity","Restarted");
+	}
+
+	@Override
+	protected void onPause()
+	{
+		active=false;
+		super.onPause();
+		Log.i("Activity","Paused");
 	}
 
 	@Override
@@ -113,7 +139,7 @@ public class GameOne extends FragmentActivity {
 		}
 		return super.onOptionsItemSelected(item);
 	}
-	
+
 	public void numberClick(View v){
 
 		if(!gameStart)
@@ -124,19 +150,19 @@ public class GameOne extends FragmentActivity {
 		}
 		//Uses tags assigned to the button in XML to avoid many duplicate methods/case statements
 		int numClicked = Integer.parseInt(v.getTag().toString());
-		
+
 		//Correct number!!!
 		if(numClicked == onScreenNums[2])
 		{
 			score++;
 			adjustOnScreenNums();
-			
+
 			if(lns==LastNumberState.TRUE){
 				tv5.setBackgroundResource(R.drawable.green_circle);
 			}else if(lns==LastNumberState.FALSE){
 				tv5.setBackgroundResource(R.drawable.red_circle);
 			}
-			
+
 			tv4.setBackgroundResource(R.drawable.green_circle);
 			lns = LastNumberState.TRUE;
 		}
@@ -144,52 +170,55 @@ public class GameOne extends FragmentActivity {
 		else
 		{
 			miss++;
-			
+
 			if(lns==LastNumberState.TRUE){
 				tv5.setBackgroundResource(R.drawable.green_circle);
 			}else if(lns==LastNumberState.FALSE){
 				tv5.setBackgroundResource(R.drawable.red_circle);
 			}
-			
+
 			adjustOnScreenNums();
 			tv4.setBackgroundResource(R.drawable.red_circle);
 			lns = LastNumberState.FALSE;
 		}
-		
+
 	}
 
 
 	private void resetScore() {
 		score = 0;
 		miss = 0;
-		
+
 		lns = LastNumberState.NONE;
-		
+
 	}
 
 	private void createNumberLabel(){
-		
+
 		onScreenNums[0] = ng.getRandomNum();
 		onScreenNums[1] = ng.getRandomNum();
 		onScreenNums[2] = ng.getRandomNum();
 		onScreenNums[3] = 0;
 		onScreenNums[4] = 0;
-		
+
+		tv4.setBackgroundResource(R.drawable.gray_circle);
+		tv5.setBackgroundResource(R.drawable.gray_circle);
+
 		updateScreen();
 	}
-	
+
 	private void adjustOnScreenNums() {
-			
+
 		onScreenNums[4] = onScreenNums[3];
 		onScreenNums[3] = onScreenNums[2];
 		onScreenNums[2] = onScreenNums[1];
 		onScreenNums[1] = onScreenNums[0];
 		onScreenNums[0] = ng.getRandomNum();
-		
+
 		updateScreen();
 	}
 
-	
+
 
 	private void updateScreen() {
 		tv1.setText(Integer.toString(onScreenNums[0]));
