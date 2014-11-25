@@ -5,8 +5,12 @@ import java.util.List;
 
 import net.epsilonlabs.datamanagementefficient.library.DataManager;
 import android.app.Activity;
+import android.app.Dialog;
+import android.app.DialogFragment;
 import android.os.Bundle;
 import android.os.CountDownTimer;
+import android.support.v4.app.FragmentActivity;
+import android.support.v4.app.FragmentManager;
 import android.os.Handler;
 import android.util.Log;
 import android.view.Menu;
@@ -15,7 +19,7 @@ import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
 
-public class GameOne extends Activity {
+public class GameOne extends FragmentActivity {
 
 	public int[] onScreenNums = new int[5];
 
@@ -26,11 +30,16 @@ public class GameOne extends Activity {
 	//DM TESTING
 	private DataManager dm;
 	private int score, miss;
+	private enum LastNumberState{
+		TRUE, FALSE, NONE
+	}
+	private LastNumberState lns = LastNumberState.NONE;
+	
 	NumGen ng = new NumGen();
 	
 	//Countdown Timer Codee
     Handler handler = new Handler();
-    Runnable runnable = new Runnable() {
+    Runnable runnable = new Runnable() {	
         public void run() {
         	 new CountDownTimer(30100, 1000) {
         		 
@@ -38,6 +47,11 @@ public class GameOne extends Activity {
         	       tv6.setText(Long.toString(millisUntilFinished/1000));
         	     }
         	     public void onFinish() {
+        	    	 
+        	    	 FragmentManager fm = getSupportFragmentManager();
+        	         SubmitScoreDialogFragment submitPopup = new SubmitScoreDialogFragment();
+        	         submitPopup.show(fm, "fragment_edit_name");
+        	    	 
         	    	 gameStart = false;
         	    	 
         	    	 tv6.setText("Score:" + score + "  Missed:" + miss);
@@ -111,20 +125,35 @@ public class GameOne extends Activity {
 		//Uses tags assigned to the button in XML to avoid many duplicate methods/case statements
 		int numClicked = Integer.parseInt(v.getTag().toString());
 		
-		
 		//Correct number!!!
 		if(numClicked == onScreenNums[2])
 		{
 			score++;
 			adjustOnScreenNums();
+			
+			if(lns==LastNumberState.TRUE){
+				tv5.setBackgroundResource(R.drawable.green_circle);
+			}else if(lns==LastNumberState.FALSE){
+				tv5.setBackgroundResource(R.drawable.red_circle);
+			}
+			
 			tv4.setBackgroundResource(R.drawable.green_circle);
+			lns = LastNumberState.TRUE;
 		}
 		//Not correct number!!
 		else
 		{
 			miss++;
+			
+			if(lns==LastNumberState.TRUE){
+				tv5.setBackgroundResource(R.drawable.green_circle);
+			}else if(lns==LastNumberState.FALSE){
+				tv5.setBackgroundResource(R.drawable.red_circle);
+			}
+			
 			adjustOnScreenNums();
 			tv4.setBackgroundResource(R.drawable.red_circle);
+			lns = LastNumberState.FALSE;
 		}
 		
 	}
@@ -133,6 +162,8 @@ public class GameOne extends Activity {
 	private void resetScore() {
 		score = 0;
 		miss = 0;
+		
+		lns = LastNumberState.NONE;
 		
 	}
 
