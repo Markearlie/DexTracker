@@ -8,5 +8,15 @@
     <string name="submit">Submit</string>
     <string name="play_again">Play Again</string>
     <string name="title_activity_leaderboard">Leaderboard</string>
-
+    <string name="title_activity_main_menu">MainMenu</string>
+    <string name="main_menu">DexTracker</string>
+    <string name="game_one">Sequential</string>
+    <string name="game_two">Type</string>
+    <string name="game_three">Smash</string>
+    <string name="settings">Settings</string>
+    <string name="leaderboard">Leaderboard</string>
+    <string name="title_activity_game_one">GameOne</string>
+    <string name="title_activity_game_two">GameTwo</string>
+    <string name="title_activity_game_three">GameThree</string>
+    <string name="title_activity_settings">Settings</string>
 </resources>
