@@ -1,11 +1,16 @@
 package com.dextracker;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
+
+import com.dextracker.adapter.CustomListViewAdapter;
 
 import android.app.Activity;
 import android.content.Context;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.ArrayAdapter;
@@ -15,7 +20,7 @@ public class Leaderboard extends Activity {
 
 	private ListView lv;
 	private Context context = Leaderboard.this;
-	
+	DexTrackerDAO dao;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -24,33 +29,41 @@ public class Leaderboard extends Activity {
 		lv = (ListView) findViewById(R.id.listView1);
 		
 		ArrayList<Player> players = new ArrayList<Player>();
-		ArrayList<Score> scores = new ArrayList<Score>();
 		
-		DexTrackerDAO dao = new DexTrackerDAO(context);
+		dao = new DexTrackerDAO(context);
 		try{
 			players = dao.getAllPlayers();
-			scores = dao.getAllScores();
 		}catch(Exception ex){
 			ex.printStackTrace();
 		}
 		
-		ArrayList<String> stringPlayers = new ArrayList<String>();
-		ArrayList<String> stringScores = new ArrayList<String>();
+		ArrayList<Leader> leaders = new ArrayList<Leader>();
 		
 		for(Player p: players){
-			stringPlayers.add(p.getAlias() + scores.get(0).toString());
+			//score + accuracy of best score
+			int score = (int) getHighestScore(p)[0];
+			int acc = (int) getHighestScore(p)[1];
+			Leader leader = new Leader(p.getAlias(), score, acc);
+			leaders.add(leader);
+			
 		}
-
-
+		Collections.sort(leaders, new Comparator<Leader>() {
+	        @Override public int compare(Leader p1, Leader p2) {
+	            return p2.getSpeedScore() - p1.getSpeedScore() ; // Ascending
+	        }
+	    });
+		for(Leader l: leaders){
+		Log.i("Leader", l.getAlias().toString());
+		}
+		
+		
+		
         // This is the array adapter, it takes the context of the activity as a 
         // first parameter, the type of list view as a second parameter and your 
         // array as a third parameter.
-        ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(
-                this, 
-                android.R.layout.simple_list_item_1,
-                stringPlayers );
+        CustomListViewAdapter arrayAdapter = new CustomListViewAdapter(getApplicationContext(), leaders);
+        lv.setAdapter(arrayAdapter);
 
-        lv.setAdapter(arrayAdapter); 
    }
 		
 	@Override
@@ -70,5 +83,23 @@ public class Leaderboard extends Activity {
 			return true;
 		}
 		return super.onOptionsItemSelected(item);
+	}
+	
+	public double[] getHighestScore(Player p){
+			
+		ArrayList<Score> playerScores = dao.getPlayerScores(p,"Sequential");
+		double highestScore = 0;
+		
+		double[] scores = new double[2];
+		for(Score score: playerScores)
+		{
+			if(score.getSpeedScore() > highestScore){
+				highestScore = score.getSpeedScore();
+				scores[0] = score.getSpeedScore();
+				scores[1] = score.getAccuracyScore();
+			}
+		}
+		
+		return scores;
 	}
 }

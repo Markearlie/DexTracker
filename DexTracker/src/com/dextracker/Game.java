@@ -6,7 +6,7 @@ import net.epsilonlabs.datamanagementefficient.annotations.Id;
 public class Game {
 	@Id
 	private int id;
-	private double playerId, scoreId;
+	private int playerId, scoreId;
 	private String gm;
 
 	
@@ -15,7 +15,7 @@ public class Game {
 	public Game() {
 	}
 
-	public Game(double playerId, double scoreId,String gm) {
+	public Game(int playerId, int scoreId,String gm) {
 		this.playerId = playerId;
 		this.scoreId = scoreId;
 		this.gm = gm;
@@ -40,15 +40,15 @@ public class Game {
 		return playerId;
 	}
 
-	public void setPlayerId(double playerId) {
+	public void setPlayerId(int playerId) {
 		this.playerId = playerId;
 	}
 
-	public double getScoreId() {
+	public int getScoreId() {
 		return scoreId;
 	}
 
-	public void setScoreId(double scoreId) {
+	public void setScoreId(int scoreId) {
 		this.scoreId = scoreId;
 	}
 

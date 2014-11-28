@@ -46,7 +46,7 @@ public class GameOne extends FragmentActivity {
 	StoppableRunnable runnable = new StoppableRunnable() {	
 		public void stoppableRun() {
 			{
-				new CountDownTimer(5000, 1000) {
+				new CountDownTimer(30100, 1000) {
 					public void onTick(long millisUntilFinished) {
 						tv6.setText(Long.toString(millisUntilFinished/1000));
 					}
@@ -54,18 +54,22 @@ public class GameOne extends FragmentActivity {
 						// (Active) Prevents crashes when runnable finishes and app is not front of screen
 						if(active)
 						{
-							tv6.setText("FINISHED!");
+							tv6.setText("30");
 							createNumberLabel();
 							FragmentManager fm = getSupportFragmentManager();
 							SubmitScoreDialogFragment submitPopup = new SubmitScoreDialogFragment();
 							submitPopup.setScore(score);
 							submitPopup.setMiss(miss);
 							submitPopup.setContext(context);
+							submitPopup.setCancelable(false);
 
 							submitPopup.show(fm, "fragment_edit_name");
 	
 							gameStart = false;
+						}else{
+							gameStart = false;
 						}
+							
 					}
 
 				}.start();
@@ -99,6 +103,7 @@ public class GameOne extends FragmentActivity {
 	@Override
 	protected void onRestart()
 	{
+		active = true;
 		super.onRestart();
 		createNumberLabel();
 		Log.i("Activity","Restarted");
@@ -110,7 +115,7 @@ public class GameOne extends FragmentActivity {
 		active=true;
 		super.onResume();
 		createNumberLabel();
-		Log.i("Activity","Restarted");
+		Log.i("Activity","Resumed");
 	}
 
 	@Override
