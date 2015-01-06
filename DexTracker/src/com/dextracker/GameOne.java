@@ -1,13 +1,7 @@
 package com.dextracker;
 
-import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.List;
 
 import net.epsilonlabs.datamanagementefficient.library.DataManager;
-import android.app.Activity;
-import android.app.Dialog;
-import android.app.DialogFragment;
 import android.content.Context;
 import android.os.Bundle;
 import android.os.CountDownTimer;
@@ -19,7 +13,6 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
-import android.widget.Toast;
 
 public class GameOne extends FragmentActivity {
 
@@ -51,7 +44,7 @@ public class GameOne extends FragmentActivity {
 						tv6.setText(Long.toString(millisUntilFinished/1000));
 					}
 					public void onFinish() {
-						// (Active) Prevents crashes when runnable finishes and app is not front of screen
+						// (Active) Prevents crashes when runnable finishes and app is not front of stack
 						if(active)
 						{
 							tv6.setText("30");
@@ -68,10 +61,8 @@ public class GameOne extends FragmentActivity {
 							gameStart = false;
 						}else{
 							gameStart = false;
-						}
-							
+						}	
 					}
-
 				}.start();
 			}
 		}

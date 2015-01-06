@@ -20,16 +20,16 @@ public class MainMenu extends Activity {
 	    	Intent intent = new Intent(this, GameOne.class);
 	    	startActivity(intent);
 	    }
-//	    public void btnGameTwo_onClick(View v)
-//	    {
-//	    	Intent intent = new Intent(this, GameTwo.class);
-//	    	startActivity(intent);
-//	    }
-//	    public void btnGameThree_onClick(View v)
-//	    {
-//	    	Intent intent = new Intent(this, GameThree.class);
-//	    	startActivity(intent);
-//	    }
+	    public void btnGameTwo_onClick(View v)
+	    {
+	    	Intent intent = new Intent(this, GameTwo.class);
+	    	startActivity(intent);
+	    }
+	    public void btnGameThree_onClick(View v)
+	    {
+	    	Intent intent = new Intent(this, GameTwo.class);
+	    	startActivity(intent);
+	    }
 	    public void btnLeaderboard_onClick(View v)
 	    {
 	    	Intent intent = new Intent(this, Leaderboard.class);

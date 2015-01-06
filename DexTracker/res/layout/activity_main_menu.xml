@@ -34,6 +34,7 @@
             android:id="@+id/game2"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:onClick="btnGameTwo_onClick"
             android:text="@string/game_two" />
 
         <Button
