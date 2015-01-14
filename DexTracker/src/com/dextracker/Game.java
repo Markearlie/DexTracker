@@ -7,10 +7,18 @@ public class Game {
 	@Id
 	private int id;
 	private int playerId, scoreId;
-	private String gm;
+	private String gameMode;
 
 	
 
+
+	public String getGameMode() {
+		return gameMode;
+	}
+
+	public void setGameMode(String gameMode) {
+		this.gameMode = gameMode;
+	}
 
 	public Game() {
 	}
@@ -18,7 +26,7 @@ public class Game {
 	public Game(int playerId, int scoreId,String gm) {
 		this.playerId = playerId;
 		this.scoreId = scoreId;
-		this.gm = gm;
+		this.gameMode = gm;
 	}
 	
 	@Override
@@ -26,7 +34,7 @@ public class Game {
 		return "Game [id=" + id
 				+ ", player=" + playerId
 				+ ", score=" + scoreId 
-				+ ", mode=" + gm +
+				+ ", mode=" + gameMode +
 				"]";
 	}
 	

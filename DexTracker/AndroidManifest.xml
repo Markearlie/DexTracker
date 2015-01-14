@@ -26,7 +26,8 @@
             android:name=".MainMenu"
             android:label="@string/title_activity_main_menu"
             android:screenOrientation="portrait" >
-            <intent-filter>
+            
+                        <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
@@ -35,6 +36,14 @@
         <activity
             android:name=".GameTwo"
             android:label="@string/title_activity_game_two" >
+        </activity>
+        
+        
+        
+        <activity
+            android:name=".MainActivity"
+            android:label="@string/title_activity_main" >
+
         </activity>
     </application>
 

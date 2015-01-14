@@ -129,8 +129,10 @@ public class DexTrackerDAO {
 		ArrayList<Score> playersScore = new ArrayList<Score>(); 
 		
 		//For now assuming Sequential - Add option to get other game modes too
-		for(Game g: allGames)
+		for(Game g: allGames )
 		{
+			//For a particular game mode
+//if(g.getPlayerId() == p.getId() && g.getGameMode().equalsIgnoreCase(gameMode))
 			if(g.getPlayerId() == p.getId())
 			{
 				playersScore.add(getScore(g.getScoreId()));

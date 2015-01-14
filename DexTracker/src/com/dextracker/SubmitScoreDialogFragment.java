@@ -29,7 +29,17 @@ public class SubmitScoreDialogFragment extends DialogFragment {
 	Context context;
 	private int score, miss;
 	EditText input;
+	
+	public String getGameMode() {
+		return gameMode;
+	}
 
+	public void setGameMode(String gameMode) {
+		this.gameMode = gameMode;
+	}
+
+	String gameMode;
+	
 	Button btnAgain, btnSubmit;
 	TextView tv1 , tv2;
 	
@@ -95,7 +105,7 @@ public class SubmitScoreDialogFragment extends DialogFragment {
 					Score s = new Score(getScore(), getMiss());
 					sID = dao.storeScore(s);
 
-					Game g = new Game(pID, sID, "Sequential");
+					Game g = new Game(pID, sID, getGameMode());
 					dao.storeGame(g);
 					
 					}

@@ -55,7 +55,7 @@ public class GameOne extends FragmentActivity {
 							submitPopup.setMiss(miss);
 							submitPopup.setContext(context);
 							submitPopup.setCancelable(false);
-
+							submitPopup.setGameMode("Sequential");
 							submitPopup.show(fm, "fragment_edit_name");
 	
 							gameStart = false;
