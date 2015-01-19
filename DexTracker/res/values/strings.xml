@@ -20,5 +20,6 @@
     <string name="title_activity_game_three">GameThree</string>
     <string name="title_activity_settings">Settings</string>
     <string name="title_activity_main">BlankLeaderboarad</string>
+    <string name="app_id">762309807396</string>
 
 </resources>

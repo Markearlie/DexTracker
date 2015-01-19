@@ -12,14 +12,6 @@ public class Game {
 	
 
 
-	public String getGameMode() {
-		return gameMode;
-	}
-
-	public void setGameMode(String gameMode) {
-		this.gameMode = gameMode;
-	}
-
 	public Game() {
 	}
 
@@ -60,4 +52,12 @@ public class Game {
 		this.scoreId = scoreId;
 	}
 
+
+	public String getGameMode() {
+		return gameMode;
+	}
+
+	public void setGameMode(String gameMode) {
+		this.gameMode = gameMode;
+	}
 }

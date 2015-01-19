@@ -20,7 +20,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 //SmashGame
-public class GameTwo extends FragmentActivity {
+public class SmashGame extends FragmentActivity {
 
 	Button btn1,btn2,btn3,btn4,btn5,btn6,btn7,btn8,btn9,btn10,btn11,btn12;
 	ArrayList<Button> buttons;
@@ -30,7 +30,7 @@ public class GameTwo extends FragmentActivity {
 	int[] order;
 	NumGen ng;
 	boolean gameStart, active;
-	Context context = GameTwo.this;
+	Context context = SmashGame.this;
 
 
 	Handler handler = new Handler();
@@ -72,6 +72,7 @@ public class GameTwo extends FragmentActivity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_game_two);
+		tv2 = (TextView) findViewById(R.id.textView2);
 
 		ng = new NumGen();
 		order = ng.getRandomUniqueNumbers(12);
@@ -147,7 +148,7 @@ public class GameTwo extends FragmentActivity {
 			score-=2;
 			miss++;
 		}
-		Log.i("Score =",""+score);
+		tv2.setText(Integer.toString(score));
 
 		newBoard();
 	}

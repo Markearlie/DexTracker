@@ -5,12 +5,12 @@
     android:orientation="vertical" 
     android:background="#17df0d">
     
-    <TextView android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:gravity="center"
-        android:text="Smash Mode Leaderboard"
-        android:textSize="20dp"
-        android:layout_centerInParent="true"/>
+
+    <ListView
+        android:id="@+id/smashListView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" >
+    </ListView>
     
 
 </RelativeLayout>

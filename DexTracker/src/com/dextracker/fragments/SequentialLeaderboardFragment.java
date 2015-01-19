@@ -53,13 +53,16 @@ public class SequentialLeaderboardFragment extends Fragment {
 		}
 
 		ArrayList<Leader> leaders = new ArrayList<Leader>();
-
+		int score, acc;
 		for(Player p: players){
 			//score + accuracy of best score
-			int score = (int) getHighestScore(p)[0];
-			int acc = (int) getHighestScore(p)[1];
-			Leader leader = new Leader(p.getAlias(), score, acc);
-			leaders.add(leader);
+			if(getHighestScore(p)!=null)
+			{
+				score = (int) getHighestScore(p)[0];
+				acc = (int) getHighestScore(p)[1];
+				Leader leader = new Leader(p.getAlias(), score, acc);
+				leaders.add(leader);
+			}
 
 		}
 		Collections.sort(leaders, new Comparator<Leader>() {
@@ -81,12 +84,17 @@ public class SequentialLeaderboardFragment extends Fragment {
 	}
 	
 	
+	//NOTE: IF THERES NO GAMES FROM A PLAYER WITH THE MATCHING GAME TYPE IT SHOULD RETURN NULL....think of how to do this
+	
+	
 	public double[] getHighestScore(Player p){
 			
 		ArrayList<Score> playerScores = dao.getPlayerScores(p,"Sequential");
 		double highestScore = 0;
 		
 		double[] scores = new double[2];
+		if(playerScores.size()!=0)
+		{
 		for(Score score: playerScores)
 		{
 			if(score.getSpeedScore() > highestScore){
@@ -95,6 +103,9 @@ public class SequentialLeaderboardFragment extends Fragment {
 				scores[1] = score.getAccuracyScore();
 			}
 		}
+		}
+		else
+			return null;
 		
 		return scores;
 	}

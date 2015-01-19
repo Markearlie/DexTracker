@@ -7,33 +7,49 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 
-public class MainMenu extends Activity {
+public class MainMenu extends Activity{
 
+
+		
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
+				
 		setContentView(R.layout.activity_main_menu);
 	}
 	
+	
+	@Override
+	protected void onStart(){
+		super.onStart();
+	}
+	@Override
+	public void onStop(){
+		super.onStop();
+	}
+	@Override
+	public void onActivityResult(int request, int response, Intent data) {
+		super.onActivityResult(request, response, data);
+	}
 	 public void btnGameOne_onClick(View v)
 	    {
-	    	Intent intent = new Intent(this, GameOne.class);
+	    	Intent intent = new Intent(this, SequentialGame.class);
 	    	startActivity(intent);
 	    }
 	    public void btnGameTwo_onClick(View v)
 	    {
-	    	Intent intent = new Intent(this, GameTwo.class);
+	    	Intent intent = new Intent(this, SmashGame.class);
 	    	startActivity(intent);
 	    }
 	    public void btnGameThree_onClick(View v)
 	    {
-	    	Intent intent = new Intent(this, GameTwo.class);
+	    	Intent intent = new Intent(this, SmashGame.class);
 	    	startActivity(intent);
 	    }
 	    public void btnLeaderboard_onClick(View v)
 	    {
-	    	Intent intent = new Intent(this, Leaderboard.class);
-	    	startActivity(intent);
+			Intent intent = new Intent(this, Leaderboard.class);
+			startActivity(intent);
 	    }
 //	    public void btnSettings_onClick(View v)
 //	    {

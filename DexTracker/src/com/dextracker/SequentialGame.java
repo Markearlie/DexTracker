@@ -1,8 +1,8 @@
 package com.dextracker;
 
 
+
 import net.epsilonlabs.datamanagementefficient.library.DataManager;
-import android.content.Context;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.support.v4.app.FragmentActivity;
@@ -14,15 +14,14 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
 
-public class GameOne extends FragmentActivity {
+public class SequentialGame extends FragmentActivity {
 
 	public int[] onScreenNums = new int[5];
+	
 
 	CountDownTimer cdt;
 	boolean gameStart,active;
 	TextView tv1, tv2, tv3, tv4, tv5, tv6;
-
-	Context context = GameOne.this;
 
 	//DM TESTING
 	private DataManager dm;
@@ -53,7 +52,7 @@ public class GameOne extends FragmentActivity {
 							SubmitScoreDialogFragment submitPopup = new SubmitScoreDialogFragment();
 							submitPopup.setScore(score);
 							submitPopup.setMiss(miss);
-							submitPopup.setContext(context);
+							submitPopup.setContext(getBaseContext());
 							submitPopup.setCancelable(false);
 							submitPopup.setGameMode("Sequential");
 							submitPopup.show(fm, "fragment_edit_name");
@@ -73,6 +72,8 @@ public class GameOne extends FragmentActivity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_game_one);
 
+		
+		
 		//Set static backgrounds in XML	
 		tv1 = (TextView)findViewById(R.id.textView1);
 		tv1.setBackgroundResource(R.drawable.gray_circle);
@@ -89,8 +90,14 @@ public class GameOne extends FragmentActivity {
 
 		createNumberLabel();
 
-
 	}
+	
+
+	
+
+	
+
+	
 	@Override
 	protected void onRestart()
 	{
@@ -223,4 +230,7 @@ public class GameOne extends FragmentActivity {
 		tv4.setText(Integer.toString(onScreenNums[3]));
 		tv5.setText(Integer.toString(onScreenNums[4]));
 	}
+	
+	
+
 }

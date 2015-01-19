@@ -111,28 +111,38 @@ public class DexTrackerDAO {
 		return new Score();
 	}
 
-	public ArrayList<Game> getAllGames() {
+	public ArrayList<Game> getAllGames(String gameMode) {
 		ArrayList<Game> listOfGames = new ArrayList<Game>();
+		ArrayList<Game> listOfSpecificGames = new ArrayList<Game>();
+		
 		dm = DataManager.getInstance(context);
 		dm.open();
 
 		listOfGames = dm.getAll(Game.class);
-
+		
+		for(Game g: listOfGames)
+		{
+			if(g.getGameMode().equalsIgnoreCase(gameMode))
+			{
+				listOfSpecificGames.add(g);
+			}
+		}
 		dm.close();
 		
-		return listOfGames;
+		return listOfSpecificGames;
 	}
 
 	public ArrayList<Score> getPlayerScores(Player p, String gameMode) {
 		
-		ArrayList<Game> allGames = getAllGames();
+		ArrayList<Game> allGames = getAllGames(gameMode);
 		ArrayList<Score> playersScore = new ArrayList<Score>(); 
 		
 		//For now assuming Sequential - Add option to get other game modes too
 		for(Game g: allGames )
 		{
+			Log.i("Mode", g.getGameMode());
 			//For a particular game mode
-//if(g.getPlayerId() == p.getId() && g.getGameMode().equalsIgnoreCase(gameMode))
+			//if(g.getPlayerId() == p.getId() && g.getGameMode().equalsIgnoreCase(gameMode))
 			if(g.getPlayerId() == p.getId())
 			{
 				playersScore.add(getScore(g.getScoreId()));
