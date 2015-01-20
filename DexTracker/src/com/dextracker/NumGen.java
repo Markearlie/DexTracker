@@ -48,8 +48,16 @@ public class NumGen {
 		Random rand = new Random();
 		
 			//Random numbers between 1 and 12
-			return rand.nextInt(11)+1;
+			return rand.nextInt(12)+1;
 			
+	}
+	
+	//Random Num of any limit
+	public Integer getRandomTypeNum(int limit){
+		Random rand = new Random();
+		
+		//Random numbers between 1 and 12
+		return rand.nextInt(limit);
 	}
 
 }
