@@ -6,6 +6,7 @@
     android:orientation="vertical"
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_horizontal_margin"
     tools:context="com.dextracker.TypeGmae" >
 
     <LinearLayout
@@ -24,64 +25,91 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" >
+        android:layout_height="wrap_content" 
+        android:paddingTop="@dimen/activity_vertical_margin">
+
 
         <TextView
             android:id="@+id/textView1"
             android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
+            android:layout_height="match_parent"
+            android:layout_weight="2"
             android:gravity="center"
             android:text="A" />
-
+        
+               <Space
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1" />
 
         <TextView
             android:id="@+id/textView2"
             android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
+            android:layout_height="match_parent"
+            android:layout_weight="2"
             android:gravity="center"
             android:text="B" />
-
-
+        
+               <Space
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1" />
 
         <TextView
             android:id="@+id/textView3"
             android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
+            android:layout_height="40dp"
+            android:layout_weight="2"
             android:gravity="center"
             android:text="C" />
+        
+               <Space
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1" />
 
 
         <TextView
             android:id="@+id/textView4"
             android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
+            android:layout_height="match_parent"
+            android:layout_weight="2"
             android:adjustViewBounds="false"
             android:gravity="center"
             android:text="D" />
+        
+               <Space
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1" />
 
 
 
         <TextView
             android:id="@+id/textView5"
             android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
+            android:layout_height="match_parent"
+            android:layout_weight="2"
             android:gravity="center"
             android:text="E" />
     </LinearLayout>
 
-
-    <TextView
-        android:id="@+id/textView7"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="TextView" 
-        android:gravity="center"
-        android:layout_gravity="center"/>
+       <LinearLayout
+            android:layout_height="wrap_content"
+            android:layout_width="fill_parent"
+            android:orientation="vertical"
+            android:gravity="center_horizontal"
+            android:paddingTop="@dimen/activity_horizontal_margin"
+            >
+            
+            <TextView 
+                android:id="@+id/currentWord"
+                android:layout_height="wrap_content"
+                android:layout_width="100dp"
+                android:text="Your Text"
+                android:background="@drawable/back"
+                />
+    </LinearLayout>
 
     <FrameLayout
         android:layout_width="match_parent"

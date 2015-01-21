@@ -18,44 +18,57 @@
         android:textSize="40sp" />
 
     <LinearLayout
-        android:layout_width="160dp"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
         android:orientation="vertical" >
 
-        <Button
-            android:id="@+id/game1"
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:onClick="btnGameOne_onClick"
-            android:text="@string/game_one" />
+            android:orientation="horizontal" >
 
-        <Button
-            android:id="@+id/game2"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:onClick="btnGameTwo_onClick"
-            android:text="@string/game_two" />
+            <Button
+                android:id="@+id/game1"
+                android:layout_width="0dp"
+                android:layout_height="120dp"
+                android:layout_weight="1"
+                android:onClick="btnGameOne_onClick"
+				android:drawableLeft="@drawable/numbers"
+                android:text="@string/game_one" />
 
-        <Button
-            android:id="@+id/game3"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:onClick="btnGameThree_onClick"
-            android:text="@string/game_three" />
+            <Button
+                android:id="@+id/game2"
+                android:layout_width="0dp"
+                android:layout_height="120dp"
+                android:layout_weight="1"
+                android:onClick="btnGameTwo_onClick"
+                android:drawableLeft="@drawable/abc"
+                android:text="@string/game_two" />
+        </LinearLayout>
 
-        <Button
-            android:id="@+id/btnLeaderboard"
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:onClick="btnLeaderboard_onClick"
-            android:text="@string/leaderboard" />
+            android:orientation="horizontal" >
 
-        <Button
-            android:id="@+id/settings"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/settings" />
+            <Button
+                android:id="@+id/game3"
+                android:layout_width="0dp"
+                android:layout_height="120dp"
+                android:layout_weight="1"
+                android:onClick="btnGameThree_onClick"
+                android:drawableLeft="@drawable/hammer"
+                android:text="@string/game_three" />
+
+            <Button
+                android:id="@+id/btnLeaderboard"
+                android:layout_width="0dp"
+                android:layout_height="120dp"
+                android:layout_weight="1"
+                android:onClick="btnLeaderboard_onClick"
+                android:drawableLeft="@drawable/leaders"
+                android:text="@string/leaderboard" />
+        </LinearLayout>
     </LinearLayout>
 
 </LinearLayout>

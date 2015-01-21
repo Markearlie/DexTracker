@@ -25,7 +25,7 @@
         <activity
             android:name=".MainMenu"
             android:label="@string/title_activity_main_menu"
-            android:screenOrientation="portrait" >
+            android:screenOrientation="landscape" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -34,7 +34,8 @@
         </activity>
         <activity
             android:name=".SmashGame"
-            android:label="@string/title_activity_game_two" >
+            android:label="@string/title_activity_game_two" 
+            android:screenOrientation="landscape" >
         </activity>
         <activity
             android:name=".MainActivity"
@@ -42,7 +43,8 @@
         </activity>
         <activity
             android:name=".TypeGame"
-            android:label="@string/title_activity_type_game" >
+            android:label="@string/title_activity_type_game"
+            android:screenOrientation="landscape" >
         </activity>
     </application>
 

@@ -33,32 +33,25 @@ ActionBar.TabListener {
 	// Tab titles
 	private String[] tabs = { "Sequential", "Type", "Smash" };
 
-	@Override
-	protected void onCreate(Bundle savedInstanceState) {
-		super.onCreate(savedInstanceState);
-		
-		setContentView(R.layout.activity_main);
-		context = getApplicationContext();
-
-
-		// Initilization
-		viewPager = (ViewPager) findViewById(R.id.pager);
-		actionBar = getActionBar();
-		mAdapter = new TabsPagerAdapter(getSupportFragmentManager());
-
-		viewPager.setAdapter(mAdapter);
-		actionBar.setHomeButtonEnabled(false);
-		actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_TABS);		
-
-		// Adding Tabs
-		for (String tab_name : tabs) {
-			actionBar.addTab(actionBar.newTab().setText(tab_name)
-					.setTabListener(this));
-		}
-
-
-
-
+	  @Override
+	    protected void onCreate(Bundle savedInstanceState) {
+	        super.onCreate(savedInstanceState);
+	        setContentView(R.layout.activity_main);
+	 
+	        // Initilization
+	        viewPager = (ViewPager) findViewById(R.id.pager);
+	        actionBar = getActionBar();
+	        mAdapter = new TabsPagerAdapter(getSupportFragmentManager());
+	 
+	        viewPager.setAdapter(mAdapter);
+	        actionBar.setHomeButtonEnabled(false);
+	        actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_TABS);        
+	 
+	        // Adding Tabs
+	        for (String tab_name : tabs) {
+	            actionBar.addTab(actionBar.newTab().setText(tab_name)
+	                    .setTabListener(this));
+	        }
 
 		/**
 		 * on swiping the viewpager make respective tab selected

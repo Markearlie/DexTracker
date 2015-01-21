@@ -64,18 +64,18 @@ public class TypeFileHandler {
 				currLine++;
 				if(currLine==lineNum){
 					reader.close();
-					return currWord;
+					return currWord.toUpperCase();
 				}
 				
 			}
-			return null;
+			return getRandomWord();
 		}
 		catch(IOException e){
 			Log.e("TypeGame", "Could not get a random word");
 			e.printStackTrace();
 		}
 
-		return "";
+		return getRandomWord();
 	}
 
 

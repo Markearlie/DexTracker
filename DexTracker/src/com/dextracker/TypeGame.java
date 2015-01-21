@@ -59,6 +59,9 @@ public class TypeGame extends FragmentActivity {
 							submitPopup.show(fm, "fragment_edit_name");
 
 							gameStart = false;
+							resetScore();
+							createWordLabel();
+							tv6.setText("");
 						}else{
 							gameStart = false;
 						}	
@@ -84,10 +87,15 @@ public class TypeGame extends FragmentActivity {
 
 		//initialize textviews
 		tv1 = (TextView) findViewById(R.id.textView1);
+		tv1.setBackgroundResource(R.drawable.gray_circle);
 		tv2 = (TextView) findViewById(R.id.textView2);
+		tv2.setBackgroundResource(R.drawable.gray_circle);
 		tv3 = (TextView) findViewById(R.id.textView3);
+		tv3.setBackgroundResource(R.drawable.blue_circle);
+		
 		tv4 = (TextView) findViewById(R.id.textView4);
 		tv5 = (TextView) findViewById(R.id.textView5);
+		
 		tv6 = (TextView) findViewById(R.id.textView6);
 
 		fileHandler = new TypeFileHandler(getApplicationContext(), "LeftHandWords.txt");
@@ -142,7 +150,7 @@ public class TypeGame extends FragmentActivity {
 
 		String letterClicked = v.getTag().toString();
 
-		TextView tv7 = (TextView) findViewById(R.id.textView7);
+		TextView txtCurrentWord = (TextView) findViewById(R.id.currentWord);
 
 		tv3 = (TextView) findViewById(R.id.textView3);
 		String targetWord = tv3.getText().toString();
@@ -151,9 +159,9 @@ public class TypeGame extends FragmentActivity {
 			currentWord += letterClicked;
 		}
 
-		tv7.setText(currentWord);
+		txtCurrentWord.setText(currentWord);
 
-		if(targetWord.length() == currentWord.length())
+		if(targetWord.length() <= currentWord.length())
 		{
 
 			//Correct Word
@@ -171,7 +179,7 @@ public class TypeGame extends FragmentActivity {
 				tv4.setBackgroundResource(R.drawable.green_circle);
 				lns = LastWordState.TRUE;
 
-				tv7.setText("");
+				txtCurrentWord.setText("");
 				currentWord = "";
 			}
 			//Not correct number!!
@@ -188,7 +196,7 @@ public class TypeGame extends FragmentActivity {
 				adjustOnScreenWords();
 				tv4.setBackgroundResource(R.drawable.red_circle);
 				lns = LastWordState.FALSE;
-				tv7.setText("");
+				txtCurrentWord.setText("");
 				currentWord = "";
 			}
 		}
