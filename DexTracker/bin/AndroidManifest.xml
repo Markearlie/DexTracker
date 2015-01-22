@@ -20,7 +20,9 @@
         </activity>
         <activity
             android:name=".Leaderboard"
-            android:label="@string/title_activity_leaderboard" >
+            android:label="@string/title_activity_leaderboard"
+            android:screenOrientation="landscape" >
+ >
         </activity>
         <activity
             android:name=".MainMenu"
@@ -34,7 +36,7 @@
         </activity>
         <activity
             android:name=".SmashGame"
-            android:label="@string/title_activity_game_two" 
+            android:label="@string/title_activity_game_two"
             android:screenOrientation="landscape" >
         </activity>
         <activity
@@ -45,6 +47,10 @@
             android:name=".TypeGame"
             android:label="@string/title_activity_type_game"
             android:screenOrientation="landscape" >
+        </activity>
+        <activity
+            android:name=".Analysis"
+            android:label="@string/title_activity_analysis" >
         </activity>
     </application>
 

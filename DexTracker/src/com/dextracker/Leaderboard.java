@@ -11,6 +11,7 @@ import android.app.ActionBar;
 import android.app.ActionBar.Tab;
 import android.app.FragmentTransaction;
 import android.content.Context;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.view.ViewPager;
@@ -36,6 +37,8 @@ ActionBar.TabListener {
 	  @Override
 	    protected void onCreate(Bundle savedInstanceState) {
 	        super.onCreate(savedInstanceState);
+	        getActionBar().setIcon(
+	        		   new ColorDrawable(getResources().getColor(android.R.color.transparent))); 
 	        setContentView(R.layout.activity_main);
 	 
 	        // Initilization

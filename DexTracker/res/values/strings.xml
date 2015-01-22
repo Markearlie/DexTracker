@@ -22,5 +22,6 @@
     <string name="title_activity_main">BlankLeaderboarad</string>
     <string name="app_id">762309807396</string>
     <string name="title_activity_type_game">TypeGame</string>
+    <string name="title_activity_analysis">Analysis</string>
 
 </resources>

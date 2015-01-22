@@ -137,26 +137,6 @@ public class SubmitScoreDialogFragment extends DialogFragment {
 		// Create the AlertDialog object and return it
 
 		return builder.create();
-		
-//		
-//		final Dialog dialog = new Dialog(getActivity());  
-//		  dialog.getWindow().requestFeature(Window.FEATURE_NO_TITLE);  
-//		  dialog.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,  
-//		    WindowManager.LayoutParams.FLAG_FULLSCREEN);  
-//		  dialog.setContentView(R.layout.submit_dialog);
-//		  dialog.getWindow().setBackgroundDrawable(new ColorDrawable(android.graphics.Color.TRANSPARENT));
-//
-//		  dialog.show();  
-//		  btnAgain = (Button) dialog.findViewById(R.id.button1);  
-//		  tv1 = (TextView) dialog.findViewById(R.id.textView1);  
-//		  btnAgain.setOnClickListener(new OnClickListener() { 
-//		@Override
-//		public void onClick(View v) {
-//			// TODO Auto-generated method stub
-//			dismiss();  
-//		}  
-//		  });  
-//		  return dialog;  
 	}
 
 	public void setContext(Context context) {

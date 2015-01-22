@@ -10,12 +10,14 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="com.example.navigationapp.MainMenu" >
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+    <ImageView
+        android:id="@+id/imageView1"
+        android:layout_width="176dp"
+        android:layout_height="72dp"
         android:layout_gravity="center"
-        android:text="@string/main_menu"
-        android:textSize="40sp" />
+        android:src="@drawable/logo" />
+
+
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -34,6 +36,7 @@
                 android:layout_weight="1"
                 android:onClick="btnGameOne_onClick"
 				android:drawableLeft="@drawable/numbers"
+				android:paddingLeft="30dip"
                 android:text="@string/game_one" />
 
             <Button
@@ -43,6 +46,7 @@
                 android:layout_weight="1"
                 android:onClick="btnGameTwo_onClick"
                 android:drawableLeft="@drawable/abc"
+                android:paddingLeft="30dip"
                 android:text="@string/game_two" />
         </LinearLayout>
 
@@ -58,7 +62,16 @@
                 android:layout_weight="1"
                 android:onClick="btnGameThree_onClick"
                 android:drawableLeft="@drawable/hammer"
+                android:paddingLeft="30dip"
                 android:text="@string/game_three" />
+
+            <Button
+                android:id="@+id/btnAnalysis"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:onClick="btnAnalysis_onClick"
+                android:layout_weight="1"
+                android:text="Analysis" />
 
             <Button
                 android:id="@+id/btnLeaderboard"
@@ -67,6 +80,7 @@
                 android:layout_weight="1"
                 android:onClick="btnLeaderboard_onClick"
                 android:drawableLeft="@drawable/leaders"
+                android:paddingLeft="30dip"
                 android:text="@string/leaderboard" />
         </LinearLayout>
     </LinearLayout>

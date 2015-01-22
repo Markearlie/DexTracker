@@ -58,12 +58,16 @@ public class MainMenu extends Activity{
 			Intent intent = new Intent(this, Leaderboard.class);
 			startActivity(intent);
 	    }
+	    public void btnAnalysis_onClick(View v)
+	    {
+			Intent intent = new Intent(this, Analysis.class);
+			startActivity(intent);
+	    }
 //	    public void btnSettings_onClick(View v)
 //	    {
 //	    	Intent intent = new Intent(this, Settings.class);
 //	    	startActivity(intent);
 //	    }
-//	    
 
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
