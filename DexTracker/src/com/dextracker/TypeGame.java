@@ -1,5 +1,8 @@
 package com.dextracker;
 
+import com.dextracker.basegameutils.BaseGameActivity;
+import com.google.android.gms.games.Games;
+
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.os.Handler;
@@ -16,7 +19,7 @@ import android.widget.TextView;
 
 
 
-public class TypeGame extends FragmentActivity {
+public class TypeGame extends BaseGameActivity {
 
 	TextView tv1,tv2,tv3,tv4,tv5,tv6;
 	String currentWord = "";
@@ -47,6 +50,10 @@ public class TypeGame extends FragmentActivity {
 						// (Active) Prevents crashes when runnable finishes and app is not front of stack
 						if(active)
 						{
+							if(getApiClient().isConnected())
+							{
+								Games.Leaderboards.submitScore(getApiClient(), getString(R.string.type_left_leaderboard), score);
+							}
 							tv6.setText("30");
 							createWordLabel();
 							FragmentManager fm = getSupportFragmentManager();
@@ -55,7 +62,7 @@ public class TypeGame extends FragmentActivity {
 							submitPopup.setMiss(miss);
 							submitPopup.setContext(getBaseContext());
 							submitPopup.setCancelable(false);
-							submitPopup.setGameMode("Type");
+							submitPopup.setGameMode("TypeLeft");
 							submitPopup.show(fm, "fragment_edit_name");
 
 							gameStart = false;
@@ -77,14 +84,7 @@ public class TypeGame extends FragmentActivity {
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		
-		//Remove title bar
-	    this.requestWindowFeature(Window.FEATURE_NO_TITLE);
-
-	    //Remove notification bar
-	    this.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
 		setContentView(R.layout.activity_type_game);
-
 		//initialize textviews
 		tv1 = (TextView) findViewById(R.id.textView1);
 		tv1.setBackgroundResource(R.drawable.gray_circle);
@@ -263,6 +263,18 @@ public class TypeGame extends FragmentActivity {
 		tv3.setText(onScreenWords[2]);
 		tv4.setText(onScreenWords[3]);
 		tv5.setText(onScreenWords[4]);
+	}
+
+	@Override
+	public void onSignInFailed() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void onSignInSucceeded() {
+		// TODO Auto-generated method stub
+		
 	}
 
 

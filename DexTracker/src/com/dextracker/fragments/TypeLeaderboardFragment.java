@@ -88,7 +88,7 @@ public class TypeLeaderboardFragment extends Fragment {
 	
 	public double[] getHighestScore(Player p){
 			
-		ArrayList<Score> playerScores = dao.getPlayerScores(p,"Type");
+		ArrayList<Score> playerScores = dao.getPlayerScores(p,"TypeLeft");
 		double highestScore = 0;
 		
 		double[] scores = new double[2];

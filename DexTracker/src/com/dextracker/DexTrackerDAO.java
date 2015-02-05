@@ -71,7 +71,7 @@ public class DexTrackerDAO {
 		listOfPlayers = dm.getAll(Player.class);
 		for(Player player: listOfPlayers)
 		{
-			if(player.getAlias().equals(alias)){
+			if(player.getAlias().toUpperCase().equals(alias.toUpperCase())){
 				//Return existing player object from db
 				return player;
 			}

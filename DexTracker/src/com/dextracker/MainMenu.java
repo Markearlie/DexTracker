@@ -1,43 +1,28 @@
 package com.dextracker;
 
-import android.app.Activity;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.drawable.BitmapDrawable;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
+import android.support.v4.app.FragmentManager;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.Window;
-import android.view.WindowManager;
 import android.widget.Button;
 
-public class MainMenu extends Activity{
+import com.dextracker.basegameutils.BaseGameActivity;
 
-
-		
+public class MainMenu extends BaseGameActivity{
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		//Remove title bar
-	    this.requestWindowFeature(Window.FEATURE_NO_TITLE);
-
-	    //Remove notification bar
-	    this.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
 		setContentView(R.layout.activity_main_menu);
+		
+
+		//findViewById(R.id.sign_out_button).setOnClickListener(this);
 	}
-	
-	
-	@Override
-	protected void onStart(){
-		super.onStart();
-	}
-	@Override
-	public void onStop(){
-		super.onStop();
-	}
-	@Override
-	public void onActivityResult(int request, int response, Intent data) {
-		super.onActivityResult(request, response, data);
-	}
+    
 	 public void btnGameOne_onClick(View v)
 	    {
 	    	Intent intent = new Intent(this, SequentialGame.class);
@@ -45,8 +30,13 @@ public class MainMenu extends Activity{
 	    }
 	    public void btnGameTwo_onClick(View v)
 	    {
-	    	Intent intent = new Intent(this, TypeGame.class);
-	    	startActivity(intent);
+	    	
+	    	FragmentManager fm = getSupportFragmentManager();
+			TypeModeDialogFragment submitPopup = new TypeModeDialogFragment();
+			submitPopup.setContext(getBaseContext());
+			submitPopup.show(fm, "fragment_edit_name");
+
+
 	    }
 	    public void btnGameThree_onClick(View v)
 	    {
@@ -55,19 +45,16 @@ public class MainMenu extends Activity{
 	    }
 	    public void btnLeaderboard_onClick(View v)
 	    {
-			Intent intent = new Intent(this, Leaderboard.class);
+			Intent intent = new Intent(this, LeaderboardMenu.class);
 			startActivity(intent);
+//	    	startActivityForResult(Games.Leaderboards.getLeaderboardIntent(
+//	    	        getApiClient(), getString(R.string.sequential_leaderboard)), 2);
 	    }
 	    public void btnAnalysis_onClick(View v)
 	    {
 			Intent intent = new Intent(this, Analysis.class);
 			startActivity(intent);
 	    }
-//	    public void btnSettings_onClick(View v)
-//	    {
-//	    	Intent intent = new Intent(this, Settings.class);
-//	    	startActivity(intent);
-//	    }
 
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
@@ -87,4 +74,18 @@ public class MainMenu extends Activity{
 		}
 		return super.onOptionsItemSelected(item);
 	}
+
+	@Override
+	public void onSignInFailed() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void onSignInSucceeded() {
+		// TODO Auto-generated method stub
+		
+	}
+
+
 }

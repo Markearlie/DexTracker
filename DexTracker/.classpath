@@ -1,7 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <classpath>
-	<classpathentry exported="true" kind="lib" path="libs/androidplot-core-0.6.1.jar"/>
-	<classpathentry exported="true" kind="lib" path="libs/androidplot-core-0.6.1-javadoc.jar"/>
 	<classpathentry kind="src" path="gen">
 		<attributes>
 			<attribute name="ignore_optional_problems" value="true"/>

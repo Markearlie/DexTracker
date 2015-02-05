@@ -8,16 +8,8 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context="com.example.navigationapp.MainMenu" >
-
-    <ImageView
-        android:id="@+id/imageView1"
-        android:layout_width="176dp"
-        android:layout_height="72dp"
-        android:layout_gravity="center"
-        android:src="@drawable/logo" />
-
-
+    tools:context="com.example.navigationapp.MainMenu"
+    android:background="#ffffff" >
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -27,61 +19,212 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginBottom="32dp"
             android:orientation="horizontal" >
 
-            <Button
-                android:id="@+id/game1"
+            <LinearLayout
+                android:id="@+id/numbers"
                 android:layout_width="0dp"
                 android:layout_height="120dp"
+                android:layout_marginRight="8dp"
                 android:layout_weight="1"
+                android:background="#4caf50"
+                android:clickable="true"
                 android:onClick="btnGameOne_onClick"
-				android:drawableLeft="@drawable/numbers"
-				android:paddingLeft="30dip"
-                android:text="@string/game_one" />
+                android:orientation="horizontal"
+                android:textColor="#ffffff" >
 
-            <Button
-                android:id="@+id/game2"
+                <ImageView
+                    android:id="@+id/ivNumbers"
+                    android:layout_width="48dp"
+                    android:layout_height="40dp"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginLeft="16dp"
+                    android:layout_weight="0.00"
+                    android:background="@drawable/numbers" />
+
+                <TextView
+                    android:id="@+id/tvNumbers"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:gravity="center"
+                    android:paddingLeft="8dp"
+                    android:text="NUMBERS"
+                    android:textColor="#ffffff"
+                    android:textSize="16sp"
+                    android:textStyle="bold" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/letters"
                 android:layout_width="0dp"
                 android:layout_height="120dp"
+                android:layout_marginLeft="8dp"
+                android:layout_marginRight="8dp"
                 android:layout_weight="1"
+                android:background="#2194f3"
+                android:clickable="true"
                 android:onClick="btnGameTwo_onClick"
-                android:drawableLeft="@drawable/abc"
-                android:paddingLeft="30dip"
-                android:text="@string/game_two" />
+                android:orientation="horizontal"
+                android:textColor="#ffffff" >
+
+                <ImageView
+                    android:id="@+id/ivLetters"
+                    android:layout_width="48dp"
+                    android:layout_height="48dp"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginLeft="16dp"
+                    android:background="@drawable/abc" />
+
+                <TextView
+                    android:id="@+id/tvLetters"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:paddingLeft="16dp"
+                    android:text="LETTERS"
+                    android:textColor="#ffffff"
+                    android:textSize="16sp"
+                    android:textStyle="bold" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/smash"
+                android:layout_width="0dp"
+                android:layout_height="120dp"
+                android:layout_marginLeft="8dp"
+                android:layout_weight="1"
+                android:background="#ff9800"
+                android:clickable="true"
+                android:onClick="btnGameThree_onClick"
+                android:orientation="horizontal"
+                android:textColor="#ffffff" >
+
+                <ImageView
+                    android:id="@+id/ivSmash"
+                    android:layout_width="48dp"
+                    android:layout_height="48dp"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginLeft="16dp"
+                    android:background="@drawable/clenched" />
+
+                <TextView
+                    android:id="@+id/tvSmash"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:paddingLeft="16dp"
+                    android:text="SMASH"
+                    android:textColor="#ffffff"
+                    android:textSize="16sp"
+                    android:textStyle="bold" />
+            </LinearLayout>
         </LinearLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal" >
-
-            <Button
-                android:id="@+id/game3"
+            
+            <LinearLayout
+                android:id="@+id/analysis"
                 android:layout_width="0dp"
                 android:layout_height="120dp"
                 android:layout_weight="1"
-                android:onClick="btnGameThree_onClick"
-                android:drawableLeft="@drawable/hammer"
-                android:paddingLeft="30dip"
-                android:text="@string/game_three" />
-
-            <Button
-                android:id="@+id/btnAnalysis"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
+                android:layout_marginRight="8dp"
+                android:background="#e53935"
+                android:clickable="true"
                 android:onClick="btnAnalysis_onClick"
-                android:layout_weight="1"
-                android:text="Analysis" />
+                android:orientation="horizontal"
+                android:textColor="#ffffff" >
 
-            <Button
-                android:id="@+id/btnLeaderboard"
+                <ImageView
+                    android:id="@+id/ivAnalysis"
+                    android:layout_width="48dp"
+                    android:layout_height="48dp"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginLeft="16dp"
+                    android:background="@drawable/chart"
+                     />
+
+                <TextView
+                    android:id="@+id/tvAnalysis"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:paddingLeft="16dp"
+                    android:text="Analysis"
+                    android:textColor="#ffffff"
+                    android:textSize="16sp"
+                    android:textStyle="bold" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/leaderboard"
                 android:layout_width="0dp"
                 android:layout_height="120dp"
                 android:layout_weight="1"
+                android:layout_marginLeft="8dp"
+                android:layout_marginRight="8dp"
+                android:background="#9c27b0"
+                android:clickable="true"
                 android:onClick="btnLeaderboard_onClick"
-                android:drawableLeft="@drawable/leaders"
-                android:paddingLeft="30dip"
-                android:text="@string/leaderboard" />
+                android:orientation="horizontal"
+                android:textColor="#ffffff" >
+
+                <ImageView
+                    android:id="@+id/ivLeaderboard"
+                    android:layout_width="48dp"
+                    android:layout_height="40dp"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginLeft="16dp"
+                    android:background="@drawable/leaders"
+                     />
+
+                <TextView
+                    android:id="@+id/tvLeaderboard"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:paddingLeft="16dp"
+                    android:text="Leaderboard"
+                    android:textColor="#ffffff"
+                    android:textSize="16sp"
+                    android:textStyle="bold" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/settings"
+                android:layout_width="0dp"
+                android:layout_height="120dp"
+                android:layout_marginLeft="8dp"
+                android:layout_weight="1"
+                android:background="#607d8b"
+                android:clickable="true"
+                android:orientation="horizontal"
+                android:textColor="#ffffff" >
+
+                <ImageView
+                    android:id="@+id/ivSettings"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginLeft="16dp"
+                    android:layout_weight="0.00"
+                    android:background="@drawable/cog" />
+
+                <TextView
+                    android:id="@+id/tvSettings"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:paddingLeft="16dp"
+                    android:text="SETTINGS"
+                    android:textColor="#ffffff"
+                    android:textSize="16sp"
+                    android:textStyle="bold" />
+            </LinearLayout>
         </LinearLayout>
     </LinearLayout>
 

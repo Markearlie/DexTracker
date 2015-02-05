@@ -32,7 +32,7 @@ ActionBar.TabListener {
 	private TabsPagerAdapter mAdapter;
 	private ActionBar actionBar;
 	// Tab titles
-	private String[] tabs = { "Sequential", "Type", "Smash" };
+	private String[] tabs = { "Sequential", "Type (Left)","Type (Right)", "Smash" };
 
 	  @Override
 	    protected void onCreate(Bundle savedInstanceState) {
@@ -60,7 +60,6 @@ ActionBar.TabListener {
 		 * on swiping the viewpager make respective tab selected
 		 * */
 		viewPager.setOnPageChangeListener(new ViewPager.OnPageChangeListener() {
-
 			@Override
 			public void onPageSelected(int position) {
 				// on changing the page

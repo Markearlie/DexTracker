@@ -118,7 +118,7 @@ public class SubmitScoreDialogFragment extends DialogFragment {
 			private boolean checkExistingPlayer(ArrayList<Player> players,String alias) {
 				for(Player p: players)
 				{
-					if(p.getAlias().equals(alias))
+					if(p.getAlias().toUpperCase().equals(alias.toUpperCase()))
 					{
 						Log.i(p.getAlias(),alias);
 						return true;

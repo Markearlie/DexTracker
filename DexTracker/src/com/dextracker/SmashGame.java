@@ -3,6 +3,9 @@ package com.dextracker;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.dextracker.basegameutils.BaseGameActivity;
+import com.google.android.gms.games.Games;
+
 import android.app.Activity;
 import android.content.Context;
 import android.graphics.Color;
@@ -12,17 +15,21 @@ import android.os.Handler;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentManager;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.ViewGroup;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.Button;
+import android.widget.ImageButton;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
 //SmashGame
-public class SmashGame extends FragmentActivity {
+public class SmashGame extends BaseGameActivity {
 
 	Button btn1,btn2,btn3,btn4,btn5,btn6,btn7,btn8,btn9,btn10,btn11,btn12;
 	ArrayList<Button> buttons;
@@ -33,6 +40,7 @@ public class SmashGame extends FragmentActivity {
 	NumGen ng;
 	boolean gameStart, active;
 	Context context = SmashGame.this;
+	LinearLayout bubble;
 
 
 	Handler handler = new Handler();
@@ -40,7 +48,7 @@ public class SmashGame extends FragmentActivity {
 		public void stoppableRun() {
 			{
 				tv1 = (TextView) findViewById(R.id.textView1);
-				
+
 				new CountDownTimer(30100, 1000) {
 					public void onTick(long millisUntilFinished) {
 						tv1.setText(Long.toString(millisUntilFinished/1000));
@@ -48,22 +56,27 @@ public class SmashGame extends FragmentActivity {
 					public void onFinish() {
 						// (Active) Prevents crashes when runnable finishes and app is not front of stack
 						if(active){
-						tv2 = (TextView) findViewById(R.id.textView2);
-						tv2.setText("Score: " + score);
-						tv1.setText("30");
-						
-						FragmentManager fm = getSupportFragmentManager();
-						SubmitScoreDialogFragment submitPopup = new SubmitScoreDialogFragment();
-						submitPopup.setScore(score);
-						submitPopup.setMiss(miss);
-						submitPopup.setContext(context);
-						submitPopup.setCancelable(false);
-						submitPopup.setGameMode("Smash");
 
-						submitPopup.show(fm, "fragment_edit_name");
+							if(getApiClient().isConnected())
+							{
+								Games.Leaderboards.submitScore(getApiClient(), getString(R.string.smash_leaderboard), score);
+							}
+							tv2 = (TextView) findViewById(R.id.textView2);
+							tv2.setText("Score: " + score);
+							tv1.setText("30");
 
-						gameStart = false;
-					}}
+							FragmentManager fm = getSupportFragmentManager();
+							SubmitScoreDialogFragment submitPopup = new SubmitScoreDialogFragment();
+							submitPopup.setScore(score);
+							submitPopup.setMiss(miss);
+							submitPopup.setContext(context);
+							submitPopup.setCancelable(false);
+							submitPopup.setGameMode("Smash");
+
+							submitPopup.show(fm, "fragment_edit_name");
+
+							gameStart = false;
+						}}
 				}.start();
 			}
 		}
@@ -73,22 +86,25 @@ public class SmashGame extends FragmentActivity {
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		
-		//Remove title bar
-	    this.requestWindowFeature(Window.FEATURE_NO_TITLE);
 
-	    //Remove notification bar
-	    this.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
-	    
 		setContentView(R.layout.activity_game_two);
 		tv2 = (TextView) findViewById(R.id.textView2);
-		
-		
 
+		//How to play popup
+		bubble = (LinearLayout) findViewById(R.id.bubbleLayout);
+		ImageButton bubbleClose = (ImageButton) bubble.findViewById(R.id.bubbleclose);
+		bubbleClose.setOnClickListener(new View.OnClickListener() {
+		    public void onClick(View v) {
+		        bubble.setVisibility(View.GONE);
+		        enableButtons();
+		    }
+		});
 		ng = new NumGen();
 		order = ng.getRandomUniqueNumbers(12);
 
 		initButtons(order);
+		
+		disableButtons();
 	}
 
 	private void initButtons(int[] order) {
@@ -122,6 +138,20 @@ public class SmashGame extends FragmentActivity {
 
 		drawButtons(order);
 	}
+	
+	private void disableButtons() {
+		for(Button button: buttons){
+			button.setEnabled(false);
+		}
+
+	}
+	private void enableButtons() {
+		for(Button button: buttons){
+			button.setEnabled(true);
+		}
+
+	}
+
 
 
 
@@ -226,5 +256,17 @@ public class SmashGame extends FragmentActivity {
 			return true;
 		}
 		return super.onOptionsItemSelected(item);
+	}
+
+	@Override
+	public void onSignInFailed() {
+		// TODO Auto-generated method stub
+
+	}
+
+	@Override
+	public void onSignInSucceeded() {
+		// TODO Auto-generated method stub
+
 	}
 }

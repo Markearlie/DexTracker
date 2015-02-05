@@ -3,36 +3,42 @@ package com.dextracker;
 
 
 import net.epsilonlabs.datamanagementefficient.library.DataManager;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
+import android.content.Intent;
+import android.content.SharedPreferences;
+import android.net.Uri;
 import android.os.Bundle;
 import android.os.CountDownTimer;
-import android.support.v4.app.FragmentActivity;
-import android.support.v4.app.FragmentManager;
 import android.os.Handler;
+import android.support.v4.app.FragmentManager;
+import android.text.Html;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.Window;
-import android.view.WindowManager;
+import android.widget.CheckBox;
 import android.widget.TextView;
 
-public class SequentialGame extends FragmentActivity {
+import com.dextracker.basegameutils.BaseGameActivity;
+import com.google.android.gms.games.Games;
+
+public class SequentialGame extends BaseGameActivity{
 
 	public int[] onScreenNums = new int[5];
 	
-
 	CountDownTimer cdt;
 	boolean gameStart,active;
 	TextView tv1, tv2, tv3, tv4, tv5, tv6;
-
-	//DM TESTING
 	private DataManager dm;
 	private int score, miss;
 	private enum LastNumberState{
 		TRUE, FALSE, NONE
 	}
+	   public static final String PREFS_NAME = "MyPrefsFile1";
+	    public CheckBox dontShowAgain;
 	private LastNumberState lns = LastNumberState.NONE;
-
 	NumGen ng = new NumGen();
 
 	//Countdown Timer Code
@@ -48,6 +54,11 @@ public class SequentialGame extends FragmentActivity {
 						// (Active) Prevents crashes when runnable finishes and app is not front of stack
 						if(active)
 						{
+							
+							if(getApiClient().isConnected())
+							{
+								Games.Leaderboards.submitScore(getApiClient(), getString(R.string.sequential_leaderboard), score);
+							}
 							tv6.setText("30");
 							createNumberLabel();
 							FragmentManager fm = getSupportFragmentManager();
@@ -64,23 +75,18 @@ public class SequentialGame extends FragmentActivity {
 							gameStart = false;
 						}	
 					}
+					
 				}.start();
 			}
 		}
 	};
 
+
+	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		
-		//Remove title bar
-	    this.requestWindowFeature(Window.FEATURE_NO_TITLE);
-
-	    //Remove notification bar
-	    this.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
 		setContentView(R.layout.activity_game_one);
-
-		
 		
 		//Set static backgrounds in XML	
 		tv1 = (TextView)findViewById(R.id.textView1);
@@ -99,11 +105,7 @@ public class SequentialGame extends FragmentActivity {
 		createNumberLabel();
 
 	}
-	
 
-	
-
-	
 
 	
 	@Override
@@ -117,7 +119,7 @@ public class SequentialGame extends FragmentActivity {
 
 	@Override
 	protected void onResume()
-	{
+	{     
 		active=true;
 		super.onResume();
 		createNumberLabel();
@@ -204,6 +206,8 @@ public class SequentialGame extends FragmentActivity {
 
 	}
 
+
+
 	private void createNumberLabel(){
 
 		onScreenNums[0] = ng.getRandomNum();
@@ -238,7 +242,22 @@ public class SequentialGame extends FragmentActivity {
 		tv4.setText(Integer.toString(onScreenNums[3]));
 		tv5.setText(Integer.toString(onScreenNums[4]));
 	}
-	
-	
+
+
+
+	@Override
+	public void onSignInFailed() {
+		// TODO Auto-generated method stub
+		
+	}
+
+
+
+	@Override
+	public void onSignInSucceeded() {
+		// TODO Auto-generated method stub
+		
+	}
+
 
 }

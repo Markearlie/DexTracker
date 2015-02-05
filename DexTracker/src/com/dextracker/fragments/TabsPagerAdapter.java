@@ -26,6 +26,9 @@ public class TabsPagerAdapter extends FragmentPagerAdapter {
 			return new TypeLeaderboardFragment();
 		case 2:
 			// Movies fragment activity
+			return new TypeRightLeaderboardFragment();
+		case 3:
+			// Movies fragment activity
 			return new SmashLeaderboardFragment();
 		}
 
@@ -35,7 +38,7 @@ public class TabsPagerAdapter extends FragmentPagerAdapter {
 	@Override
 	public int getCount() {
 		// get item count - equal to number of tabs
-		return 3;
+		return 4;
 	}
 
 }
