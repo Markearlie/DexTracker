@@ -2,8 +2,11 @@ package com.dextracker;
 
 
 
+import java.util.ArrayList;
+
 import net.epsilonlabs.datamanagementefficient.library.DataManager;
 import android.app.AlertDialog;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -18,6 +21,7 @@ import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.TextView;
 
@@ -31,6 +35,9 @@ public class SequentialGame extends BaseGameActivity{
 	CountDownTimer cdt;
 	boolean gameStart,active;
 	TextView tv1, tv2, tv3, tv4, tv5, tv6;
+	Button btn1,btn2,btn3,btn4,btn5,btn6,btn7,btn8,btn9,btn10,btn11,btn12;
+	ArrayList<Button> buttons;
+	Context ctx = this;
 	private DataManager dm;
 	private int score, miss;
 	private enum LastNumberState{
@@ -52,8 +59,10 @@ public class SequentialGame extends BaseGameActivity{
 					}
 					public void onFinish() {
 						// (Active) Prevents crashes when runnable finishes and app is not front of stack
+						disableButtons();
 						if(active)
 						{
+							Log.i("Dialog", "Shown");
 							
 							if(getApiClient().isConnected())
 							{
@@ -66,13 +75,16 @@ public class SequentialGame extends BaseGameActivity{
 							submitPopup.setScore(score);
 							submitPopup.setMiss(miss);
 							submitPopup.setContext(getBaseContext());
+							submitPopup.setButtons(buttons);
 							submitPopup.setCancelable(false);
 							submitPopup.setGameMode("Sequential");
 							submitPopup.show(fm, "fragment_edit_name");
 	
 							gameStart = false;
+
 						}else{
 							gameStart = false;
+
 						}	
 					}
 					
@@ -102,10 +114,54 @@ public class SequentialGame extends BaseGameActivity{
 		tv5 = (TextView)findViewById(R.id.textView5);
 		tv6 = (TextView)findViewById(R.id.textView6);
 
+		initButtons();
 		createNumberLabel();
 
 	}
+	
+	private void initButtons() {
 
+		btn1 = (Button)findViewById(R.id.button1);
+		btn2 = (Button)findViewById(R.id.button2);
+		btn3 = (Button)findViewById(R.id.button3);
+		btn4 = (Button)findViewById(R.id.button4);
+		btn5 = (Button)findViewById(R.id.button5);	
+		btn6 = (Button)findViewById(R.id.button6);
+		btn7 = (Button)findViewById(R.id.button7);
+		btn8 = (Button)findViewById(R.id.button8);
+		btn9 = (Button)findViewById(R.id.button9);
+		btn10 = (Button)findViewById(R.id.button10);
+		btn11 = (Button)findViewById(R.id.button11);
+		btn12 = (Button)findViewById(R.id.button12);
+
+		buttons = new ArrayList<Button>();
+		buttons.add(btn1);
+		buttons.add(btn2);
+		buttons.add(btn3);
+		buttons.add(btn4);
+		buttons.add(btn5);
+		buttons.add(btn6);
+		buttons.add(btn7);
+		buttons.add(btn8);
+		buttons.add(btn9);
+		buttons.add(btn10);
+		buttons.add(btn11);
+		buttons.add(btn12);
+	}
+	
+	
+	private void disableButtons() {
+		for(Button button: buttons){
+			button.setEnabled(false);
+		}
+
+	}
+	private void enableButtons() {
+		for(Button button: buttons){
+			button.setEnabled(true);
+		}
+
+	}
 
 	
 	@Override

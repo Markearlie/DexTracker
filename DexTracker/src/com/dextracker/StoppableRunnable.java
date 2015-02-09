@@ -14,6 +14,7 @@ public abstract class StoppableRunnable implements Runnable {
             stop();
         }
     }
+    
 
     public boolean isStopped() {
         return mIsStopped;

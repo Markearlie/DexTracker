@@ -29,6 +29,7 @@ public class SubmitScoreDialogFragment extends DialogFragment {
 	Context context;
 	private int score, miss;
 	EditText input;
+	ArrayList<Button> buttons;
 	
 	public String getGameMode() {
 		return gameMode;
@@ -66,6 +67,7 @@ public class SubmitScoreDialogFragment extends DialogFragment {
 		// Use the Builder class for convenient dialog construction
 		AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
 		
+		
 		input = new EditText(getActivity());
 		input.setHint("Name");
 		
@@ -75,7 +77,7 @@ public class SubmitScoreDialogFragment extends DialogFragment {
 		.setPositiveButton(R.string.submit, new DialogInterface.OnClickListener() {
 			public void onClick(DialogInterface dialog, int id) {
 				try{
-					
+					enableButtons();
 					String alias = input.getText().toString();
 					if(!alias.isEmpty())
 					{
@@ -129,7 +131,7 @@ public class SubmitScoreDialogFragment extends DialogFragment {
 		})
 		.setNegativeButton(R.string.play_again, new DialogInterface.OnClickListener() {
 			public void onClick(DialogInterface dialog, int id) {
-
+				enableButtons();
 				//Play again code here, perhaps relaunch activity - see overhead/time required.
 
 			}
@@ -142,5 +144,15 @@ public class SubmitScoreDialogFragment extends DialogFragment {
 	public void setContext(Context context) {
 		this.context = context;
 
+	}
+
+	public void setButtons(ArrayList<Button> buttons) {
+		this.buttons = buttons;
+	}
+	
+	public void enableButtons(){
+		for(Button button: buttons){
+			button.setEnabled(true);
+		}
 	}
 }
