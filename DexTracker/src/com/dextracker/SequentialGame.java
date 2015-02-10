@@ -156,12 +156,6 @@ public class SequentialGame extends BaseGameActivity{
 		}
 
 	}
-	private void enableButtons() {
-		for(Button button: buttons){
-			button.setEnabled(true);
-		}
-
-	}
 
 	
 	@Override

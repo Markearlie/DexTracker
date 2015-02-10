@@ -1,5 +1,7 @@
 package com.dextracker;
 
+import java.util.ArrayList;
+
 import com.dextracker.basegameutils.BaseGameActivity;
 import com.google.android.gms.games.Games;
 
@@ -14,6 +16,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
+import android.widget.Button;
 import android.widget.TextView;
 
 
@@ -24,6 +27,10 @@ public class TypeGame extends BaseGameActivity {
 	TextView tv1,tv2,tv3,tv4,tv5,tv6;
 	String currentWord = "";
 	TypeFileHandler fileHandler;
+	Button btn1,btn2,btn3,btn4,btn5,btn6,btn7,btn8,btn9,btn10,btn11,btn12;
+	ArrayList<Button> buttons = new ArrayList<Button>();
+	
+	TextView currWord;
 
 	boolean gameStart,active;
 	private int score, miss;
@@ -42,14 +49,17 @@ public class TypeGame extends BaseGameActivity {
 	StoppableRunnable runnable = new StoppableRunnable() {	
 		public void stoppableRun() {
 			{
-				new CountDownTimer(30100, 1000) {
+				new CountDownTimer(10100, 1000) {
 					public void onTick(long millisUntilFinished) {
 						tv6.setText(Long.toString(millisUntilFinished/1000));
 					}
 					public void onFinish() {
 						// (Active) Prevents crashes when runnable finishes and app is not front of stack
+						disableButtons();
+						currWord.setText("");
 						if(active)
 						{
+							
 							if(getApiClient().isConnected())
 							{
 								Games.Leaderboards.submitScore(getApiClient(), getString(R.string.type_left_leaderboard), score);
@@ -61,6 +71,7 @@ public class TypeGame extends BaseGameActivity {
 							submitPopup.setScore(score);
 							submitPopup.setMiss(miss);
 							submitPopup.setContext(getBaseContext());
+							submitPopup.setButtons(buttons);
 							submitPopup.setCancelable(false);
 							submitPopup.setGameMode("TypeLeft");
 							submitPopup.show(fm, "fragment_edit_name");
@@ -97,13 +108,26 @@ public class TypeGame extends BaseGameActivity {
 		tv5 = (TextView) findViewById(R.id.textView5);
 		
 		tv6 = (TextView) findViewById(R.id.textView6);
+		
+		currWord = (TextView) findViewById(R.id.currentWord);
 
 		fileHandler = new TypeFileHandler(getApplicationContext(), "LeftHandWords.txt");
 		fileHandler.openFile();
+		
+		initButtons();
 
 		createWordLabel();
 
 
+
+	}
+	
+	
+	
+	private void disableButtons() {
+		for(Button button: buttons){
+			button.setEnabled(false);
+		}
 
 	}
 	
@@ -200,6 +224,36 @@ public class TypeGame extends BaseGameActivity {
 				currentWord = "";
 			}
 		}
+	}
+	
+	private void initButtons() {
+
+		btn1 = (Button)findViewById(R.id.button1);
+		btn2 = (Button)findViewById(R.id.button2);
+		btn3 = (Button)findViewById(R.id.button3);
+		btn4 = (Button)findViewById(R.id.button4);
+		btn5 = (Button)findViewById(R.id.button5);	
+		btn6 = (Button)findViewById(R.id.button6);
+		btn7 = (Button)findViewById(R.id.button7);
+		btn8 = (Button)findViewById(R.id.button8);
+		btn9 = (Button)findViewById(R.id.button9);
+		btn10 = (Button)findViewById(R.id.button10);
+		btn11 = (Button)findViewById(R.id.button11);
+		btn12 = (Button)findViewById(R.id.button12);
+
+		buttons = new ArrayList<Button>();
+		buttons.add(btn1);
+		buttons.add(btn2);
+		buttons.add(btn3);
+		buttons.add(btn4);
+		buttons.add(btn5);
+		buttons.add(btn6);
+		buttons.add(btn7);
+		buttons.add(btn8);
+		buttons.add(btn9);
+		buttons.add(btn10);
+		buttons.add(btn11);
+		buttons.add(btn12);
 	}
 
 	private void resetScore() {

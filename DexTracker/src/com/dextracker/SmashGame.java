@@ -56,7 +56,7 @@ public class SmashGame extends BaseGameActivity {
 					public void onFinish() {
 						// (Active) Prevents crashes when runnable finishes and app is not front of stack
 						if(active){
-
+							disableButtons();
 							if(getApiClient().isConnected())
 							{
 								Games.Leaderboards.submitScore(getApiClient(), getString(R.string.smash_leaderboard), score);
@@ -69,6 +69,7 @@ public class SmashGame extends BaseGameActivity {
 							SubmitScoreDialogFragment submitPopup = new SubmitScoreDialogFragment();
 							submitPopup.setScore(score);
 							submitPopup.setMiss(miss);
+							submitPopup.setButtons(buttons);
 							submitPopup.setContext(context);
 							submitPopup.setCancelable(false);
 							submitPopup.setGameMode("Smash");

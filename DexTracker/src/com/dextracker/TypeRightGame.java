@@ -1,5 +1,7 @@
 package com.dextracker;
 
+import java.util.ArrayList;
+
 import com.dextracker.basegameutils.BaseGameActivity;
 import com.google.android.gms.games.Games;
 
@@ -14,6 +16,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
+import android.widget.Button;
 import android.widget.TextView;
 
 
@@ -24,6 +27,9 @@ public class TypeRightGame extends BaseGameActivity {
 	TextView tv1,tv2,tv3,tv4,tv5,tv6;
 	String currentWord = "";
 	TypeFileHandler fileHandler;
+
+	Button btn1,btn2,btn3,btn4,btn5,btn6,btn7,btn8,btn9,btn10,btn11,btn12;
+	ArrayList<Button> buttons = new ArrayList<Button>();
 
 	boolean gameStart,active;
 	private int score, miss;
@@ -50,6 +56,7 @@ public class TypeRightGame extends BaseGameActivity {
 						// (Active) Prevents crashes when runnable finishes and app is not front of stack
 						if(active)
 						{
+							disableButtons();
 							if(getApiClient().isConnected())
 							{
 								Games.Leaderboards.submitScore(getApiClient(), getString(R.string.type_right_leaderboard), score);
@@ -61,6 +68,7 @@ public class TypeRightGame extends BaseGameActivity {
 							submitPopup.setScore(score);
 							submitPopup.setMiss(miss);
 							submitPopup.setContext(getBaseContext());
+							submitPopup.setButtons(buttons);
 							submitPopup.setCancelable(false);
 							submitPopup.setGameMode("TypeRight");
 							submitPopup.show(fm, "fragment_edit_name");
@@ -90,19 +98,61 @@ public class TypeRightGame extends BaseGameActivity {
 		tv2.setBackgroundResource(R.drawable.gray_circle);
 		tv3 = (TextView) findViewById(R.id.textView3);
 		tv3.setBackgroundResource(R.drawable.blue_circle);
-		
+
 		tv4 = (TextView) findViewById(R.id.textView4);
 		tv5 = (TextView) findViewById(R.id.textView5);
-		
+
 		tv6 = (TextView) findViewById(R.id.textView6);
 
 		fileHandler = new TypeFileHandler(getApplicationContext(), "RightHandWords.txt");
 		fileHandler.openFile();
 
+		initButtons();
+
 		createWordLabel();
 
 	}
-	
+
+
+	private void initButtons() {
+
+		btn1 = (Button)findViewById(R.id.button1);
+		btn2 = (Button)findViewById(R.id.button2);
+		btn3 = (Button)findViewById(R.id.button3);
+		btn4 = (Button)findViewById(R.id.button4);
+		btn5 = (Button)findViewById(R.id.button5);	
+		btn6 = (Button)findViewById(R.id.button6);
+		btn7 = (Button)findViewById(R.id.button7);
+		btn8 = (Button)findViewById(R.id.button8);
+		btn9 = (Button)findViewById(R.id.button9);
+		btn10 = (Button)findViewById(R.id.button10);
+		btn11 = (Button)findViewById(R.id.button11);
+		btn12 = (Button)findViewById(R.id.button12);
+
+		buttons = new ArrayList<Button>();
+		buttons.add(btn1);
+		buttons.add(btn2);
+		buttons.add(btn3);
+		buttons.add(btn4);
+		buttons.add(btn5);
+		buttons.add(btn6);
+		buttons.add(btn7);
+		buttons.add(btn8);
+		buttons.add(btn9);
+		buttons.add(btn10);
+		buttons.add(btn11);
+		buttons.add(btn12);
+	}
+
+
+
+
+	private void disableButtons() {
+		for(Button button: buttons){
+			button.setEnabled(false);
+		}
+	}
+
 	@Override
 	protected void onRestart()
 	{
@@ -136,13 +186,13 @@ public class TypeRightGame extends BaseGameActivity {
 		Log.i("Score ", "  "+score);
 		Log.i("Miss ", "  "+miss);
 
-				
-				if(!gameStart)
-				{
-					runnable.run();
-					gameStart = true;
-					resetScore();
-				}
+
+		if(!gameStart)
+		{
+			runnable.run();
+			gameStart = true;
+			resetScore();
+		}
 
 		String letterClicked = v.getTag().toString();
 
@@ -264,13 +314,13 @@ public class TypeRightGame extends BaseGameActivity {
 	@Override
 	public void onSignInFailed() {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override
 	public void onSignInSucceeded() {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 
