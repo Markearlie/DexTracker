@@ -8,6 +8,7 @@ import com.google.android.gms.games.Games;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.os.CountDownTimer;
@@ -90,22 +91,28 @@ public class SmashGame extends BaseGameActivity {
 
 		setContentView(R.layout.activity_game_two);
 		tv2 = (TextView) findViewById(R.id.textView2);
-
-		//How to play popup
-		bubble = (LinearLayout) findViewById(R.id.bubbleLayout);
-		ImageButton bubbleClose = (ImageButton) bubble.findViewById(R.id.bubbleclose);
-		bubbleClose.setOnClickListener(new View.OnClickListener() {
-		    public void onClick(View v) {
-		        bubble.setVisibility(View.GONE);
-		        enableButtons();
-		    }
-		});
 		ng = new NumGen();
 		order = ng.getRandomUniqueNumbers(12);
-
 		initButtons(order);
-		
 		disableButtons();
+		SharedPreferences prefs = getSharedPreferences("PREF_NAME", MODE_PRIVATE); 
+
+		boolean popup = prefs.getBoolean("popup", true);	
+
+		bubble = (LinearLayout) findViewById(R.id.bubbleLayout);
+		if(!popup){
+			bubble.setVisibility(View.GONE);
+			enableButtons();
+		}else{
+			ImageButton bubbleClose = (ImageButton) bubble.findViewById(R.id.bubbleclose);
+			bubbleClose.setOnClickListener(new View.OnClickListener() {
+				public void onClick(View v) {
+					bubble.setVisibility(View.GONE);
+					enableButtons();
+				}
+			});
+		}
+		
 	}
 
 	private void initButtons(int[] order) {

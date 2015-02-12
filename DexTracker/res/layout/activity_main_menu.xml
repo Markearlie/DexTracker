@@ -202,6 +202,7 @@
                 android:background="#607d8b"
                 android:clickable="true"
                 android:orientation="horizontal"
+                android:onClick="btnSettings_onClick"
                 android:textColor="#ffffff" >
 
                 <ImageView

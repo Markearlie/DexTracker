@@ -1,6 +1,7 @@
 package com.dextracker;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 import android.app.Activity;
@@ -149,6 +150,43 @@ public class DexTrackerDAO {
 			}
 		}
 		return playersScore;
+	}
+
+	public ArrayList<Score> getLast10PlayerScores(Player p, String gameMode) {
+		ArrayList<Game> allGames = getAllGames(gameMode);
+		ArrayList<Score> playersScore = new ArrayList<Score>(); 
+		ArrayList<Score> array = new ArrayList<Score>();
+		//For now assuming Sequential - Add option to get other game modes too
+		for(Game g: allGames )
+		{
+			Log.i("Mode", g.getGameMode());
+			//For a particular game mode
+			//if(g.getPlayerId() == p.getId() && g.getGameMode().equalsIgnoreCase(gameMode))
+			if(g.getPlayerId() == p.getId())
+			{
+				playersScore.add(getScore(g.getScoreId()));
+			}
+		}
+		
+		if (playersScore.size() >= 10) // Make sure you really have 3 elements
+		{
+
+		    array.add(playersScore.get(playersScore.size()-1));
+		    array.add(playersScore.get(playersScore.size()-2));
+		    array.add(playersScore.get(playersScore.size()-3));
+		    array.add(playersScore.get(playersScore.size()-4));
+		    array.add(playersScore.get(playersScore.size()-5)); 
+		    array.add(playersScore.get(playersScore.size()-6)); 
+		    array.add(playersScore.get(playersScore.size()-7)); 
+		    array.add(playersScore.get(playersScore.size()-8)); 
+		    array.add(playersScore.get(playersScore.size()-9)); 
+		    array.add(playersScore.get(playersScore.size()-10)); 
+		    Collections.reverse(array);
+		    
+			return array;
+		}
+		return playersScore;
+
 	}
 
 }

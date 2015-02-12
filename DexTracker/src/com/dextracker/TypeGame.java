@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import com.dextracker.basegameutils.BaseGameActivity;
 import com.google.android.gms.games.Games;
 
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.os.Handler;
@@ -17,6 +18,8 @@ import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.Button;
+import android.widget.ImageButton;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 
@@ -31,7 +34,7 @@ public class TypeGame extends BaseGameActivity {
 	ArrayList<Button> buttons = new ArrayList<Button>();
 	
 	TextView currWord;
-
+	LinearLayout bubble;
 	boolean gameStart,active;
 	private int score, miss;
 
@@ -49,7 +52,7 @@ public class TypeGame extends BaseGameActivity {
 	StoppableRunnable runnable = new StoppableRunnable() {	
 		public void stoppableRun() {
 			{
-				new CountDownTimer(10100, 1000) {
+				new CountDownTimer(30100, 1000) {
 					public void onTick(long millisUntilFinished) {
 						tv6.setText(Long.toString(millisUntilFinished/1000));
 					}
@@ -114,10 +117,27 @@ public class TypeGame extends BaseGameActivity {
 		fileHandler = new TypeFileHandler(getApplicationContext(), "LeftHandWords.txt");
 		fileHandler.openFile();
 		
-		initButtons();
-
 		createWordLabel();
+		initButtons();
+		disableButtons();
+		
+		SharedPreferences prefs = getSharedPreferences("PREF_NAME", MODE_PRIVATE); 
 
+		boolean popup = prefs.getBoolean("popup", true);	
+
+		bubble = (LinearLayout) findViewById(R.id.bubbleLayout);
+		if(!popup){
+			bubble.setVisibility(View.GONE);
+			enableButtons();
+		}else{
+			ImageButton bubbleClose = (ImageButton) bubble.findViewById(R.id.bubbleclose);
+			bubbleClose.setOnClickListener(new View.OnClickListener() {
+				public void onClick(View v) {
+					bubble.setVisibility(View.GONE);
+					enableButtons();
+				}
+			});
+		}
 
 
 	}
@@ -130,7 +150,12 @@ public class TypeGame extends BaseGameActivity {
 		}
 
 	}
-	
+	private void enableButtons() {
+		for(Button button: buttons){
+			button.setEnabled(true);
+		}
+
+	}
 	@Override
 	protected void onRestart()
 	{
@@ -184,6 +209,24 @@ public class TypeGame extends BaseGameActivity {
 		}
 
 		txtCurrentWord.setText(currentWord);
+		
+		if(!currentWord.equalsIgnoreCase(targetWord.substring(0, currentWord.length())))
+		{
+			miss++;
+
+			if(lns==LastWordState.TRUE){
+				tv5.setBackgroundResource(R.drawable.green_circle);
+			}else if(lns==LastWordState.FALSE){
+				tv5.setBackgroundResource(R.drawable.red_circle);
+			}
+
+			adjustOnScreenWords();
+			tv4.setBackgroundResource(R.drawable.red_circle);
+			lns = LastWordState.FALSE;
+			txtCurrentWord.setText("");
+			currentWord = "";
+		}
+		
 
 		if(targetWord.length() <= currentWord.length())
 		{
@@ -203,23 +246,6 @@ public class TypeGame extends BaseGameActivity {
 				tv4.setBackgroundResource(R.drawable.green_circle);
 				lns = LastWordState.TRUE;
 
-				txtCurrentWord.setText("");
-				currentWord = "";
-			}
-			//Not correct number!!
-			else
-			{
-				miss++;
-
-				if(lns==LastWordState.TRUE){
-					tv5.setBackgroundResource(R.drawable.green_circle);
-				}else if(lns==LastWordState.FALSE){
-					tv5.setBackgroundResource(R.drawable.red_circle);
-				}
-
-				adjustOnScreenWords();
-				tv4.setBackgroundResource(R.drawable.red_circle);
-				lns = LastWordState.FALSE;
 				txtCurrentWord.setText("");
 				currentWord = "";
 			}
@@ -259,7 +285,7 @@ public class TypeGame extends BaseGameActivity {
 	private void resetScore() {
 		score = 0;
 		miss = 0;
-
+		currentWord = "";
 		lns = LastWordState.NONE;
 
 	}

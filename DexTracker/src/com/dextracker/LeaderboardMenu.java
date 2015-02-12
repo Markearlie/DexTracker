@@ -24,6 +24,9 @@ public class LeaderboardMenu extends BaseGameActivity {
         button1.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
     			Intent intent = new Intent(ctx, Leaderboard.class);
+    			Bundle b = new Bundle();
+    			b.putInt("pos", 0);
+    			intent.putExtras(b);
     			startActivity(intent);
             }
         });
@@ -31,6 +34,9 @@ public class LeaderboardMenu extends BaseGameActivity {
         button2.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
             	Intent intent = new Intent(ctx, Leaderboard.class);
+            	Bundle b = new Bundle();
+    			b.putInt("pos", 2);
+    			intent.putExtras(b);
     			startActivity(intent);
             }
         });
@@ -38,6 +44,9 @@ public class LeaderboardMenu extends BaseGameActivity {
         button3.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
             	Intent intent = new Intent(ctx, Leaderboard.class);
+            	Bundle b = new Bundle();
+    			b.putInt("pos", 1);
+    			intent.putExtras(b);
     			startActivity(intent);
             }
         });
@@ -45,6 +54,9 @@ public class LeaderboardMenu extends BaseGameActivity {
         button4.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
             	Intent intent = new Intent(ctx, Leaderboard.class);
+            	Bundle b = new Bundle();
+    			b.putInt("pos", 3);
+    			intent.putExtras(b);
     			startActivity(intent);
             }
         });

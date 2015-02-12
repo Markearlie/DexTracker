@@ -55,6 +55,11 @@ ActionBar.TabListener {
 	            actionBar.addTab(actionBar.newTab().setText(tab_name)
 	                    .setTabListener(this));
 	        }
+	        
+	        //Test ActionBar Selection
+	        Bundle extras = getIntent().getExtras();
+	        int pos = extras.getInt("pos");
+	        actionBar.setSelectedNavigationItem(pos);
 
 		/**
 		 * on swiping the viewpager make respective tab selected

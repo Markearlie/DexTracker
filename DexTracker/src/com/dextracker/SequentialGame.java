@@ -23,6 +23,8 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
+import android.widget.ImageButton;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.dextracker.basegameutils.BaseGameActivity;
@@ -31,22 +33,20 @@ import com.google.android.gms.games.Games;
 public class SequentialGame extends BaseGameActivity{
 
 	public int[] onScreenNums = new int[5];
-	
+
 	CountDownTimer cdt;
 	boolean gameStart,active;
 	TextView tv1, tv2, tv3, tv4, tv5, tv6;
 	Button btn1,btn2,btn3,btn4,btn5,btn6,btn7,btn8,btn9,btn10,btn11,btn12;
 	ArrayList<Button> buttons;
 	Context ctx = this;
-	private DataManager dm;
 	private int score, miss;
 	private enum LastNumberState{
 		TRUE, FALSE, NONE
 	}
-	   public static final String PREFS_NAME = "MyPrefsFile1";
-	    public CheckBox dontShowAgain;
 	private LastNumberState lns = LastNumberState.NONE;
 	NumGen ng = new NumGen();
+	LinearLayout bubble;
 
 	//Countdown Timer Code
 	Handler handler = new Handler();
@@ -63,7 +63,7 @@ public class SequentialGame extends BaseGameActivity{
 						if(active)
 						{
 							Log.i("Dialog", "Shown");
-							
+
 							if(getApiClient().isConnected())
 							{
 								Games.Leaderboards.submitScore(getApiClient(), getString(R.string.sequential_leaderboard), score);
@@ -79,7 +79,7 @@ public class SequentialGame extends BaseGameActivity{
 							submitPopup.setCancelable(false);
 							submitPopup.setGameMode("Sequential");
 							submitPopup.show(fm, "fragment_edit_name");
-	
+
 							gameStart = false;
 
 						}else{
@@ -87,19 +87,20 @@ public class SequentialGame extends BaseGameActivity{
 
 						}	
 					}
-					
+
 				}.start();
 			}
 		}
 	};
 
 
-	
+
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_game_one);
-		
+
+
 		//Set static backgrounds in XML	
 		tv1 = (TextView)findViewById(R.id.textView1);
 		tv1.setBackgroundResource(R.drawable.gray_circle);
@@ -114,11 +115,29 @@ public class SequentialGame extends BaseGameActivity{
 		tv5 = (TextView)findViewById(R.id.textView5);
 		tv6 = (TextView)findViewById(R.id.textView6);
 
+
 		initButtons();
+		disableButtons();
+		SharedPreferences prefs = getSharedPreferences("PREF_NAME", MODE_PRIVATE); 
+
+		boolean popup = prefs.getBoolean("popup", true);	
+		bubble = (LinearLayout) findViewById(R.id.bubbleLayout);
+		if(!popup){
+			bubble.setVisibility(View.GONE);
+			enableButtons();
+		}else{
+			ImageButton bubbleClose = (ImageButton) bubble.findViewById(R.id.bubbleclose);
+			bubbleClose.setOnClickListener(new View.OnClickListener() {
+				public void onClick(View v) {
+					bubble.setVisibility(View.GONE);
+					enableButtons();
+				}
+			});
+		}
 		createNumberLabel();
 
 	}
-	
+
 	private void initButtons() {
 
 		btn1 = (Button)findViewById(R.id.button1);
@@ -148,16 +167,20 @@ public class SequentialGame extends BaseGameActivity{
 		buttons.add(btn11);
 		buttons.add(btn12);
 	}
-	
-	
+
+
 	private void disableButtons() {
 		for(Button button: buttons){
 			button.setEnabled(false);
 		}
-
+	}
+	private void enableButtons() {
+		for(Button button: buttons){
+			button.setEnabled(true);
+		}
 	}
 
-	
+
 	@Override
 	protected void onRestart()
 	{
@@ -298,7 +321,7 @@ public class SequentialGame extends BaseGameActivity{
 	@Override
 	public void onSignInFailed() {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 
@@ -306,7 +329,7 @@ public class SequentialGame extends BaseGameActivity{
 	@Override
 	public void onSignInSucceeded() {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 

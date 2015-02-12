@@ -68,7 +68,7 @@ public class Analysis extends Activity {
 				public void onItemSelected(AdapterView<?> parent, View view,
 						int position, long id) {
 					try{
-						ArrayList<Score> scores = dao.getPlayerScores(players.get(spnPlayers.getSelectedItemPosition()), spnModes.getSelectedItem().toString());
+						ArrayList<Score> scores = dao.getLast10PlayerScores(players.get(spnPlayers.getSelectedItemPosition()), spnModes.getSelectedItem().toString());
 						Number[] lastScores = createArray(scores);
 						drawChart(lastScores);
 						
@@ -93,7 +93,7 @@ public class Analysis extends Activity {
 			public void onItemSelected(AdapterView<?> parent, View view,
 					int position, long id) {
 				try{
-					ArrayList<Score> scores = dao.getPlayerScores(players.get(spnPlayers.getSelectedItemPosition()), spnModes.getSelectedItem().toString());
+					ArrayList<Score> scores = dao.getLast10PlayerScores(players.get(spnPlayers.getSelectedItemPosition()), spnModes.getSelectedItem().toString());
 					Number[] lastScores = createArray(scores);
 					drawChart(lastScores);		
 				}

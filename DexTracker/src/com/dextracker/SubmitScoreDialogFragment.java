@@ -78,7 +78,7 @@ public class SubmitScoreDialogFragment extends DialogFragment {
 			public void onClick(DialogInterface dialog, int id) {
 				try{
 					enableButtons();
-					String alias = input.getText().toString();
+					String alias = input.getText().toString().trim();
 					if(!alias.isEmpty())
 					{
 					//Add this code to database layer

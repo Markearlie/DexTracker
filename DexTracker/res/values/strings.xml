@@ -32,7 +32,8 @@
 
     <string-array name="game_modes">
         <item>Sequential</item>
-        <item>Type</item>
+        <item>TypeRight</item>
+        <item>TypeLeft</item>
         <item>Smash</item>
     </string-array>
 

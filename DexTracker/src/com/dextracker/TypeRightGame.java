@@ -5,26 +5,23 @@ import java.util.ArrayList;
 import com.dextracker.basegameutils.BaseGameActivity;
 import com.google.android.gms.games.Games;
 
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.os.Handler;
-import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentManager;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.Window;
-import android.view.WindowManager;
 import android.widget.Button;
+import android.widget.ImageButton;
+import android.widget.LinearLayout;
 import android.widget.TextView;
-
-
-
 
 public class TypeRightGame extends BaseGameActivity {
 
-	TextView tv1,tv2,tv3,tv4,tv5,tv6;
+	TextView tv1,tv2,tv3,tv4,tv5,tv6, tvCurrWord;
 	String currentWord = "";
 	TypeFileHandler fileHandler;
 
@@ -38,7 +35,7 @@ public class TypeRightGame extends BaseGameActivity {
 		TRUE, FALSE, NONE
 	}
 	private LastWordState lns = LastWordState.NONE;
-
+	LinearLayout bubble;
 
 	public String[] onScreenWords = new String[5];
 
@@ -57,6 +54,7 @@ public class TypeRightGame extends BaseGameActivity {
 						if(active)
 						{
 							disableButtons();
+							tvCurrWord.setText("");
 							if(getApiClient().isConnected())
 							{
 								Games.Leaderboards.submitScore(getApiClient(), getString(R.string.type_right_leaderboard), score);
@@ -104,12 +102,33 @@ public class TypeRightGame extends BaseGameActivity {
 
 		tv6 = (TextView) findViewById(R.id.textView6);
 
+		tvCurrWord = (TextView) findViewById(R.id.currentWord);
+
 		fileHandler = new TypeFileHandler(getApplicationContext(), "RightHandWords.txt");
 		fileHandler.openFile();
-
-		initButtons();
-
+		
 		createWordLabel();
+		initButtons();
+		disableButtons();
+		
+		SharedPreferences prefs = getSharedPreferences("PREF_NAME", MODE_PRIVATE); 
+
+		boolean popup = prefs.getBoolean("popup", true);	
+
+		bubble = (LinearLayout) findViewById(R.id.bubbleLayout);
+		if(!popup){
+			bubble.setVisibility(View.GONE);
+			enableButtons();
+		}else{
+			ImageButton bubbleClose = (ImageButton) bubble.findViewById(R.id.bubbleclose);
+			bubbleClose.setOnClickListener(new View.OnClickListener() {
+				public void onClick(View v) {
+					bubble.setVisibility(View.GONE);
+					enableButtons();
+				}
+			});
+		}
+
 
 	}
 
@@ -144,15 +163,16 @@ public class TypeRightGame extends BaseGameActivity {
 		buttons.add(btn12);
 	}
 
-
-
-
 	private void disableButtons() {
 		for(Button button: buttons){
 			button.setEnabled(false);
 		}
 	}
-
+	private void enableButtons() {
+		for(Button button: buttons){
+			button.setEnabled(true);
+		}
+	}
 	@Override
 	protected void onRestart()
 	{
@@ -207,6 +227,24 @@ public class TypeRightGame extends BaseGameActivity {
 
 		txtCurrentWord.setText(currentWord);
 
+		if(!currentWord.equalsIgnoreCase(targetWord.substring(0, currentWord.length())))
+		{
+			miss++;
+
+			if(lns==LastWordState.TRUE){
+				tv5.setBackgroundResource(R.drawable.green_circle);
+			}else if(lns==LastWordState.FALSE){
+				tv5.setBackgroundResource(R.drawable.red_circle);
+			}
+
+			adjustOnScreenWords();
+			tv4.setBackgroundResource(R.drawable.red_circle);
+			lns = LastWordState.FALSE;
+			txtCurrentWord.setText("");
+			currentWord = "";
+		}
+
+
 		if(targetWord.length() <= currentWord.length())
 		{
 
@@ -228,30 +266,13 @@ public class TypeRightGame extends BaseGameActivity {
 				txtCurrentWord.setText("");
 				currentWord = "";
 			}
-			//Not correct number!!
-			else
-			{
-				miss++;
-
-				if(lns==LastWordState.TRUE){
-					tv5.setBackgroundResource(R.drawable.green_circle);
-				}else if(lns==LastWordState.FALSE){
-					tv5.setBackgroundResource(R.drawable.red_circle);
-				}
-
-				adjustOnScreenWords();
-				tv4.setBackgroundResource(R.drawable.red_circle);
-				lns = LastWordState.FALSE;
-				txtCurrentWord.setText("");
-				currentWord = "";
-			}
 		}
 	}
 
 	private void resetScore() {
 		score = 0;
 		miss = 0;
-
+		currentWord = "";
 		lns = LastWordState.NONE;
 
 	}

@@ -1,15 +1,14 @@
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/LinearLayout1"
+    android:id="@+id/RelativeLayout1"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
-    android:paddingTop="@dimen/activity_horizontal_margin"
-    tools:context="com.dextracker.TypeGmae" >
+    tools:context="com.dextracker.TypeRightGame" >
 
     <LinearLayout
+        android:id="@+id/timeLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" >
 
@@ -20,13 +19,16 @@
             android:layout_weight="1"
             android:gravity="center"
             android:text="30"
+                        android:paddingTop="16dp"
+            android:paddingBottom="16dp"
             android:textAppearance="?android:attr/textAppearanceLarge" />
     </LinearLayout>
 
     <LinearLayout
+                android:id="@+id/letterBelt"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" 
-        android:paddingTop="@dimen/activity_vertical_margin">
+        android:layout_below="@+id/timeLayout" >
 
 
         <TextView
@@ -95,11 +97,14 @@
     </LinearLayout>
 
        <LinearLayout
+                   android:id="@+id/currWordBelt"
             android:layout_height="wrap_content"
             android:layout_width="fill_parent"
             android:orientation="vertical"
             android:gravity="center_horizontal"
-            android:paddingTop="@dimen/activity_horizontal_margin"
+                    android:paddingTop="16dp"
+        android:paddingBottom="16dp"
+            android:layout_below="@+id/letterBelt"
             >
             
             <TextView 
@@ -114,7 +119,8 @@
     <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_weight="0.5" >
+        android:layout_weight="0.5"
+        android:layout_below="@+id/currWordBelt" >
 
         <TableLayout
             android:layout_width="match_parent"
@@ -284,5 +290,67 @@
             </TableRow>
         </TableLayout>
     </FrameLayout>
+      <LinearLayout
+        android:id="@+id/bubbleLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true" >
 
-</LinearLayout>
+        <LinearLayout
+            android:id="@+id/bubble"
+            android:layout_width="215dp"
+            android:layout_height="wrap_content"
+            android:background="@+drawable/bubble"
+            android:orientation="vertical"
+            android:padding="5dp" >
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" >
+
+                <TextView
+                    android:id="@+id/venuename"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="5"
+                    android:gravity="center|left"
+                    android:text="How to Play"
+                    android:textColor="#000"
+                    android:textStyle="bold" />
+
+                <ImageButton
+                    android:id="@+id/bubbleclose"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="right"
+                    android:layout_weight="1"
+                    android:background="@android:color/transparent"
+                    android:src="@drawable/cross" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical" >
+
+              <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" >
+
+                    <TextView
+                        android:id="@+id/green"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:padding="3dp"
+                        android:text="Spell the word in blue using the letters below! You get a point for each correct word! "
+                      	android:layout_gravity="center_vertical|right"
+                      	android:textStyle="italic"/>
+
+
+                </LinearLayout>
+            </LinearLayout>
+        </LinearLayout>
+    </LinearLayout>
+</RelativeLayout>
