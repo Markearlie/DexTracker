@@ -21,6 +21,7 @@ import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.ImageButton;
@@ -53,7 +54,7 @@ public class SequentialGame extends BaseGameActivity{
 	StoppableRunnable runnable = new StoppableRunnable() {	
 		public void stoppableRun() {
 			{
-				new CountDownTimer(30100, 1000) {
+				new CountDownTimer(10100, 1000) {
 					public void onTick(long millisUntilFinished) {
 						tv6.setText(Long.toString(millisUntilFinished/1000));
 					}
@@ -63,22 +64,29 @@ public class SequentialGame extends BaseGameActivity{
 						if(active)
 						{
 							Log.i("Dialog", "Shown");
-
+							
 							if(getApiClient().isConnected())
 							{
 								Games.Leaderboards.submitScore(getApiClient(), getString(R.string.sequential_leaderboard), score);
 							}
 							tv6.setText("30");
 							createNumberLabel();
-							FragmentManager fm = getSupportFragmentManager();
-							SubmitScoreDialogFragment submitPopup = new SubmitScoreDialogFragment();
+							final FragmentManager fm = getSupportFragmentManager();
+							final SubmitScoreDialogFragment submitPopup = new SubmitScoreDialogFragment();
 							submitPopup.setScore(score);
 							submitPopup.setMiss(miss);
 							submitPopup.setContext(getBaseContext());
 							submitPopup.setButtons(buttons);
 							submitPopup.setCancelable(false);
 							submitPopup.setGameMode("Sequential");
-							submitPopup.show(fm, "fragment_edit_name");
+							Runnable launchTask = new Runnable() {
+							    @Override
+							    public void run() {
+							    	submitPopup.show(fm, "fragment_edit_name");
+							    }
+							}; 
+							Handler h = new Handler();
+							h.postDelayed(launchTask, 1000);
 
 							gameStart = false;
 
@@ -89,6 +97,7 @@ public class SequentialGame extends BaseGameActivity{
 					}
 
 				}.start();
+
 			}
 		}
 	};
@@ -167,8 +176,7 @@ public class SequentialGame extends BaseGameActivity{
 		buttons.add(btn11);
 		buttons.add(btn12);
 	}
-
-
+	
 	private void disableButtons() {
 		for(Button button: buttons){
 			button.setEnabled(false);

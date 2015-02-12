@@ -27,7 +27,7 @@
     <string name="type_right_leaderboard">CgkI-KbngNgSEAIQBQ</string>
     <string name="type_left_leaderboard">CgkI-KbngNgSEAIQBA</string>
     <string name="smash_leaderboard">CgkI-KbngNgSEAIQAw</string>
-    <string name="title_activity_leaderboard_menu">LeaderboardMenu</string>
+    <string name="title_activity_leaderboard_menu">Leaderboard Menu</string>
     <string name="title_activity_type_right_game">TypeRightGame</string>
 
     <string-array name="game_modes">

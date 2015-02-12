@@ -61,20 +61,26 @@ public class TypeRightGame extends BaseGameActivity {
 							}
 							tv6.setText("30");
 							createWordLabel();
-							FragmentManager fm = getSupportFragmentManager();
-							SubmitScoreDialogFragment submitPopup = new SubmitScoreDialogFragment();
+							final FragmentManager fm = getSupportFragmentManager();
+							final SubmitScoreDialogFragment submitPopup = new SubmitScoreDialogFragment();
 							submitPopup.setScore(score);
 							submitPopup.setMiss(miss);
 							submitPopup.setContext(getBaseContext());
 							submitPopup.setButtons(buttons);
 							submitPopup.setCancelable(false);
 							submitPopup.setGameMode("TypeRight");
-							submitPopup.show(fm, "fragment_edit_name");
+							Runnable launchTask = new Runnable() {
+							    @Override
+							    public void run() {
+							    	submitPopup.show(fm, "fragment_edit_name");
+							    }
+							}; 
+							Handler h = new Handler();
+							h.postDelayed(launchTask, 1000);
 
 							gameStart = false;
 							resetScore();
 							createWordLabel();
-							tv6.setText("");
 						}else{
 							gameStart = false;
 						}	

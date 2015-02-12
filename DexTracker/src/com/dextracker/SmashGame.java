@@ -66,16 +66,24 @@ public class SmashGame extends BaseGameActivity {
 							tv2.setText("Score: " + score);
 							tv1.setText("30");
 
-							FragmentManager fm = getSupportFragmentManager();
-							SubmitScoreDialogFragment submitPopup = new SubmitScoreDialogFragment();
+							final FragmentManager fm = getSupportFragmentManager();
+							final SubmitScoreDialogFragment submitPopup = new SubmitScoreDialogFragment();
 							submitPopup.setScore(score);
 							submitPopup.setMiss(miss);
 							submitPopup.setButtons(buttons);
 							submitPopup.setContext(context);
 							submitPopup.setCancelable(false);
 							submitPopup.setGameMode("Smash");
-
-							submitPopup.show(fm, "fragment_edit_name");
+							tv1.setText("Game");
+							tv2.setText("Over");
+							Runnable launchTask = new Runnable() {
+							    @Override
+							    public void run() {
+							    	submitPopup.show(fm, "fragment_edit_name");
+							    }
+							}; 
+							Handler h = new Handler();
+							h.postDelayed(launchTask, 1000);
 
 							gameStart = false;
 						}}

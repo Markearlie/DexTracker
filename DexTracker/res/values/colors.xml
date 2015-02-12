@@ -1,9 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <item name="red1" type="color">#ff0000</item>
-    <item name="red2" type="color">#B20000</item>
-    <item name="red3" type="color">#C13232</item>
-    <item name="red4" type="color">#d98484</item>
+    <item name="green" type="color">#6FBF72</item>
 
 </resources>

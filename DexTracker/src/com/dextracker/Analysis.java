@@ -3,6 +3,7 @@ package com.dextracker;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.androidplot.ui.TableModel.Axis;
 import com.github.mikephil.charting.charts.LineChart;
 import com.github.mikephil.charting.data.Entry;
 import com.github.mikephil.charting.data.LineData;
@@ -10,6 +11,7 @@ import com.github.mikephil.charting.data.LineDataSet;
 import com.github.mikephil.charting.utils.Legend;
 import com.github.mikephil.charting.utils.Legend.LegendForm;
 import com.github.mikephil.charting.utils.Legend.LegendPosition;
+import com.github.mikephil.charting.utils.YLabels;
 
 import android.app.Activity;
 import android.os.Bundle;
@@ -123,7 +125,6 @@ public class Analysis extends Activity {
 	private void drawChart(Number[] figures){
 		//Chart stuff begins here
 		LineChart chart = (LineChart) findViewById(R.id.chart);
-		
 		ArrayList<Entry> valsComp1 = new ArrayList<Entry>();
 		
 		for(int i = 0; i < figures.length; i++){
@@ -133,6 +134,8 @@ public class Analysis extends Activity {
 
 	    LineDataSet setComp1 = new LineDataSet(valsComp1, "Attempts");
 	    setComp1.setLineWidth(2.5f);
+	    setComp1.setColor(getResources().getColor(R.color.green));
+	    setComp1.setCircleColor(getResources().getColor(R.color.green));
 	    
 	    ArrayList<LineDataSet> dataSets = new ArrayList<LineDataSet>();
 	    dataSets.add(setComp1);
@@ -142,8 +145,8 @@ public class Analysis extends Activity {
 	    xVals.add("6");xVals.add("7");xVals.add("8");xVals.add("9");xVals.add("10");
 	    
 	    LineData data = new LineData(xVals, dataSets);
-	    
 		chart.setData(data);
+		
 		 Legend l = chart.getLegend();
 		 l.setFormSize(10f); // set the size of the legend forms/shapes
 		 l.setForm(LegendForm.CIRCLE); // set what type of form/shape should be used
@@ -151,11 +154,10 @@ public class Analysis extends Activity {
 		 l.setXEntrySpace(5f); // set the space between the legend entries on the x-axis
 		 l.setYEntrySpace(5f); // set the space between the legend entries on the y-axis
 
-		 chart.setDescription("This is a chart");
-
+		 chart.setDescription("Last 10 Games");
 
 		 chart.animateXY(2000,2000);//Animates the chart up and across
-
+		 
 		
 	}
 

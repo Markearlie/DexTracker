@@ -62,27 +62,34 @@ public class TypeGame extends BaseGameActivity {
 						currWord.setText("");
 						if(active)
 						{
-							
+			
 							if(getApiClient().isConnected())
 							{
 								Games.Leaderboards.submitScore(getApiClient(), getString(R.string.type_left_leaderboard), score);
 							}
 							tv6.setText("30");
 							createWordLabel();
-							FragmentManager fm = getSupportFragmentManager();
-							SubmitScoreDialogFragment submitPopup = new SubmitScoreDialogFragment();
+							final FragmentManager fm = getSupportFragmentManager();
+							final SubmitScoreDialogFragment submitPopup = new SubmitScoreDialogFragment();
 							submitPopup.setScore(score);
 							submitPopup.setMiss(miss);
 							submitPopup.setContext(getBaseContext());
 							submitPopup.setButtons(buttons);
 							submitPopup.setCancelable(false);
 							submitPopup.setGameMode("TypeLeft");
-							submitPopup.show(fm, "fragment_edit_name");
+							Runnable launchTask = new Runnable() {
+							    @Override
+							    public void run() {
+							    	submitPopup.show(fm, "fragment_edit_name");
+							    }
+							}; 
+							Handler h = new Handler();
+							h.postDelayed(launchTask, 1000);
+							
 
 							gameStart = false;
 							resetScore();
 							createWordLabel();
-							tv6.setText("");
 						}else{
 							gameStart = false;
 						}	

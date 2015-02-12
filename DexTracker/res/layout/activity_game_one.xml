@@ -11,40 +11,40 @@
         android:id="@+id/LinearLayout2"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:layout_marginBottom="16dp" >
+        android:layout_marginBottom="16dp"
+        android:layout_marginTop="16dp" >
 
-            <LinearLayout
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="4"
-                android:gravity="right"
-                android:paddingRight="8dp" >
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="4"
+            android:gravity="right"
+            android:paddingRight="8dp" >
 
-                <ImageView
-                    android:id="@+id/imageView1"
-                    android:layout_width="32dp"
-                    android:layout_height="32dp"
-                    android:background="@drawable/clock" />
-            </LinearLayout>
-
-            <TextView
-                android:id="@+id/textView6"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="4"
-                android:gravity="center|left"
-                android:paddingLeft="8dp"
-                android:text="30"
-                android:textSize="24sp" />
+            <ImageView
+                android:id="@+id/imageView1"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:background="@drawable/clock" />
         </LinearLayout>
+
+        <TextView
+            android:id="@+id/textView6"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="4"
+            android:gravity="center|left"
+            android:paddingLeft="8dp"
+            android:text="30"
+            android:textSize="24sp" />
+    </LinearLayout>
 
     <LinearLayout
         android:id="@+id/numberBelt"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="16dp"
-        android:layout_below="@+id/LinearLayout2" > 
+        android:layout_below="@+id/LinearLayout2"
+        android:layout_marginBottom="16dp" >
 
         <TextView
             android:id="@+id/textView1"
@@ -81,6 +81,7 @@
             android:layout_weight="1"
             android:gravity="center"
             android:text="C"
+            android:textColor="#ffffff"
             android:textSize="28sp" />
 
         <Space
@@ -96,7 +97,8 @@
             android:adjustViewBounds="false"
             android:gravity="center"
             android:text="D"
-            android:textAppearance="?android:attr/textAppearanceLarge" />
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:textColor="#ffffff" />
 
         <Space
             android:layout_width="0dp"
@@ -110,185 +112,187 @@
             android:layout_weight="1"
             android:gravity="center"
             android:text="E"
-            android:textAppearance="?android:attr/textAppearanceLarge" />
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:textColor="#ffffff" />
     </LinearLayout>
 
-        <FrameLayout
+    <FrameLayout
+        android:id="@+id/frameLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/numberBelt"
+        android:layout_weight="0.5" >
+
+        <TableLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="0.5"
-            android:layout_below="@+id/numberBelt" >
+            android:layout_gravity="center" >
 
-            <TableLayout
-                android:layout_width="match_parent"
+            <TableRow
+                android:id="@+id/tableRow1"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center" >
+                android:gravity="center"
+                android:minHeight="60dp" >
 
-                <TableRow
-                    android:id="@+id/tableRow1"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:gravity="center"
-                    android:minHeight="60dp" >
-
-                    <Space
-                        android:layout_width="0dp"
-                        android:layout_height="match_parent"
-                        android:layout_weight="1" />
-
-                    <Button
-                        android:id="@+id/button1"
-                        android:layout_width="0dp"
-                        android:layout_height="match_parent"
-                        android:layout_weight="2"
-                        android:onClick="numberClick"
-                        android:tag="1"
-                        android:text="1" />
-
-                    <Button
-                        android:id="@+id/button2"
-                        android:layout_width="0dp"
-                        android:layout_height="match_parent"
-                        android:layout_weight="2"
-                        android:onClick="numberClick"
-                        android:tag="2"
-                        android:text="2" />
-
-                    <Button
-                        android:id="@+id/button3"
-                        android:layout_width="0dp"
-                        android:layout_height="match_parent"
-                        android:layout_weight="2"
-                        android:onClick="numberClick"
-                        android:tag="3"
-                        android:text="3" />
-
-                    <Button
-                        android:id="@+id/button4"
-                        android:layout_width="0dp"
-                        android:layout_height="match_parent"
-                        android:layout_weight="2"
-                        android:onClick="numberClick"
-                        android:tag="4"
-                        android:text="4" />
-
-                    <Space
-                        android:layout_width="0dp"
-                        android:layout_height="match_parent"
-                        android:layout_weight="1" />
-                </TableRow>
-
-                <TableRow
-                    android:id="@+id/tableRow2"
-                    android:layout_width="wrap_content"
+                <Space
+                    android:layout_width="0dp"
                     android:layout_height="match_parent"
-                    android:gravity="center"
-                    android:minHeight="60dp" >
+                    android:layout_weight="1" />
 
-                    <Space
-                        android:layout_width="0dp"
-                        android:layout_height="match_parent"
-                        android:layout_weight="1" />
+                <Button
+                    android:id="@+id/button1"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="2"
+                    android:onClick="numberClick"
+                    android:tag="1"
+                    android:text="1" />
 
-                    <Button
-                        android:id="@+id/button5"
-                        android:layout_width="0dp"
-                        android:layout_height="match_parent"
-                        android:layout_weight="2"
-                        android:onClick="numberClick"
-                        android:tag="5"
-                        android:text="5" />
+                <Button
+                    android:id="@+id/button2"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="2"
+                    android:onClick="numberClick"
+                    android:tag="2"
+                    android:text="2" />
 
-                    <Button
-                        android:id="@+id/button6"
-                        android:layout_width="0dp"
-                        android:layout_height="match_parent"
-                        android:layout_weight="2"
-                        android:onClick="numberClick"
-                        android:tag="6"
-                        android:text="6" />
+                <Button
+                    android:id="@+id/button3"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="2"
+                    android:onClick="numberClick"
+                    android:tag="3"
+                    android:text="3" />
 
-                    <Button
-                        android:id="@+id/button7"
-                        android:layout_width="0dp"
-                        android:layout_height="match_parent"
-                        android:layout_weight="2"
-                        android:onClick="numberClick"
-                        android:tag="7"
-                        android:text="7" />
+                <Button
+                    android:id="@+id/button4"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="2"
+                    android:onClick="numberClick"
+                    android:tag="4"
+                    android:text="4" />
 
-                    <Button
-                        android:id="@+id/button8"
-                        android:layout_width="0dp"
-                        android:layout_height="match_parent"
-                        android:layout_weight="2"
-                        android:onClick="numberClick"
-                        android:tag="8"
-                        android:text="8" />
+                <Space
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1" />
+            </TableRow>
 
-                    <Space
-                        android:layout_width="0dp"
-                        android:layout_height="match_parent"
-                        android:layout_weight="1" />
-                </TableRow>
+            <TableRow
+                android:id="@+id/tableRow2"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:minHeight="60dp" >
 
-                <TableRow
-                    android:id="@+id/tableRow3"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:gravity="center"
-                    android:minHeight="60dp" >
+                <Space
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1" />
 
-                    <Space
-                        android:layout_width="0dp"
-                        android:layout_height="match_parent"
-                        android:layout_weight="1" />
+                <Button
+                    android:id="@+id/button5"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="2"
+                    android:onClick="numberClick"
+                    android:tag="5"
+                    android:text="5" />
 
-                    <Button
-                        android:id="@+id/button9"
-                        android:layout_width="0dp"
-                        android:layout_height="match_parent"
-                        android:layout_weight="2"
-                        android:onClick="numberClick"
-                        android:tag="9"
-                        android:text="9" />
+                <Button
+                    android:id="@+id/button6"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="2"
+                    android:onClick="numberClick"
+                    android:tag="6"
+                    android:text="6" />
 
-                    <Button
-                        android:id="@+id/button10"
-                        android:layout_width="0dp"
-                        android:layout_height="match_parent"
-                        android:layout_weight="2"
-                        android:onClick="numberClick"
-                        android:tag="10"
-                        android:text="10" />
+                <Button
+                    android:id="@+id/button7"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="2"
+                    android:onClick="numberClick"
+                    android:tag="7"
+                    android:text="7" />
 
-                    <Button
-                        android:id="@+id/button11"
-                        android:layout_width="0dp"
-                        android:layout_height="match_parent"
-                        android:layout_weight="2"
-                        android:onClick="numberClick"
-                        android:tag="11"
-                        android:text="11" />
+                <Button
+                    android:id="@+id/button8"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="2"
+                    android:onClick="numberClick"
+                    android:tag="8"
+                    android:text="8" />
 
-                    <Button
-                        android:id="@+id/button12"
-                        android:layout_width="0dp"
-                        android:layout_height="match_parent"
-                        android:layout_weight="2"
-                        android:onClick="numberClick"
-                        android:tag="12"
-                        android:text="12" />
+                <Space
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1" />
+            </TableRow>
 
-                    <Space
-                        android:layout_width="0dp"
-                        android:layout_height="match_parent"
-                        android:layout_weight="1" />
-                </TableRow>
-            </TableLayout>
-        </FrameLayout>
-        
-        <LinearLayout
+            <TableRow
+                android:id="@+id/tableRow3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:minHeight="60dp" >
+
+                <Space
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1" />
+
+                <Button
+                    android:id="@+id/button9"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="2"
+                    android:onClick="numberClick"
+                    android:tag="9"
+                    android:text="9" />
+
+                <Button
+                    android:id="@+id/button10"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="2"
+                    android:onClick="numberClick"
+                    android:tag="10"
+                    android:text="10" />
+
+                <Button
+                    android:id="@+id/button11"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="2"
+                    android:onClick="numberClick"
+                    android:tag="11"
+                    android:text="11" />
+
+                <Button
+                    android:id="@+id/button12"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="2"
+                    android:onClick="numberClick"
+                    android:tag="12"
+                    android:text="12" />
+
+                <Space
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1" />
+            </TableRow>
+        </TableLayout>
+    </FrameLayout>
+
+    <LinearLayout
         android:id="@+id/bubbleLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -332,7 +336,7 @@
                 android:layout_height="match_parent"
                 android:orientation="vertical" >
 
-              <LinearLayout
+                <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content" >
 
@@ -340,16 +344,14 @@
                         android:id="@+id/green"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical|right"
                         android:layout_weight="1"
                         android:padding="3dp"
                         android:text="Hit the number in blue using the numbers in the keypad below! You get a point for each correct number "
-                      	android:layout_gravity="center_vertical|right"
-                      	android:textStyle="italic"/>
-
-
+                        android:textStyle="italic" />
                 </LinearLayout>
             </LinearLayout>
         </LinearLayout>
     </LinearLayout>
-        
+
 </RelativeLayout>
