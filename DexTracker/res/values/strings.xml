@@ -8,7 +8,7 @@
     <string name="submit">Submit</string>
     <string name="play_again">Play Again</string>
     <string name="title_activity_leaderboard">Leaderboard</string>
-    <string name="title_activity_main_menu">MainMenu</string>
+    <string name="title_activity_main_menu">DexTracker</string>
     <string name="main_menu">DexTracker</string>
     <string name="game_one">Sequential</string>
     <string name="game_two">Type</string>
@@ -29,6 +29,11 @@
     <string name="smash_leaderboard">CgkI-KbngNgSEAIQAw</string>
     <string name="title_activity_leaderboard_menu">Leaderboard Menu</string>
     <string name="title_activity_type_right_game">TypeRightGame</string>
+    <string name="begin_type_achiv">CgkI-KbngNgSEAIQBg</string>
+    <string name="average_type_achiv">CgkI-KbngNgSEAIQBw</string>
+    <string name="expert_type_achiv">CgkI-KbngNgSEAIQCA</string>
+    <string name="expert_smash_achiv">CgkI-KbngNgSEAIQCQ</string>
+    <string name="goldfinger_achiv">CgkI-KbngNgSEAIQCg</string>
 
     <string-array name="game_modes">
         <item>Sequential</item>
@@ -36,5 +41,7 @@
         <item>TypeLeft</item>
         <item>Smash</item>
     </string-array>
+
+    <string name="title_activity_splash_screen">DexTracker</string>
 
 </resources>

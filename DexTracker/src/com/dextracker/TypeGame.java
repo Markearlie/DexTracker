@@ -66,6 +66,13 @@ public class TypeGame extends BaseGameActivity {
 							if(getApiClient().isConnected())
 							{
 								Games.Leaderboards.submitScore(getApiClient(), getString(R.string.type_left_leaderboard), score);
+								if(score>=10){
+									Games.Achievements.unlock(getApiClient(), getString(R.string.begin_type_achiv));
+								}else if(score>=20){
+									Games.Achievements.unlock(getApiClient(), getString(R.string.average_type_achiv));
+								}else if(score>=25){
+									Games.Achievements.unlock(getApiClient(), getString(R.string.expert_type_achiv));
+								}
 							}
 							tv6.setText("30");
 							createWordLabel();

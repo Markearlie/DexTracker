@@ -88,6 +88,12 @@ public class LeaderboardMenu extends BaseGameActivity {
     	    	        getApiClient(), getString(R.string.smash_leaderboard)), 2);
             }
         });
+        final Button button9 = (Button) findViewById(R.id.btnAchievements);
+        button9.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+            	startActivityForResult(Games.Achievements.getAchievementsIntent(getApiClient()), 2);
+            }
+        });
 	}
 
 	@Override

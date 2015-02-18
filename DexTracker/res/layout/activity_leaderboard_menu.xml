@@ -138,4 +138,12 @@
             android:textColor="#ffffff" />
     </LinearLayout>
 
+    <Button
+        android:id="@+id/btnAchievements"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#AB47BC"
+        android:text="Achievements"
+        android:textColor="#ffffff" />
+
 </LinearLayout>

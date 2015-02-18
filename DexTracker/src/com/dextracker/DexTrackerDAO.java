@@ -4,10 +4,10 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
+import net.epsilonlabs.datamanagementefficient.user.DataManager;
 import android.app.Activity;
 import android.content.Context;
 import android.util.Log;
-import net.epsilonlabs.datamanagementefficient.library.DataManager;
 
 public class DexTrackerDAO {
 
