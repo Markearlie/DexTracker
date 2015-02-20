@@ -45,7 +45,7 @@ public class SequentialGame extends BaseGameActivity{
 	StoppableRunnable runnable = new StoppableRunnable() {	
 		public void stoppableRun() {
 			{
-				new CountDownTimer(10100, 1000) {
+				new CountDownTimer(30100, 1000) {
 					public void onTick(long millisUntilFinished) {
 						tv6.setText(Long.toString(millisUntilFinished/1000));
 					}
