@@ -61,6 +61,11 @@ public class SmashGame extends BaseGameActivity {
 							if(getApiClient().isConnected())
 							{
 								Games.Leaderboards.submitScore(getApiClient(), getString(R.string.smash_leaderboard), score);
+								if(score>=200){
+									Games.Achievements.unlock(getApiClient(), getString(R.string.expert_smash_achiv));
+								}else if(score>=230){
+									Games.Achievements.unlock(getApiClient(), getString(R.string.goldfinger_achiv));
+								}
 							}
 							tv2 = (TextView) findViewById(R.id.textView2);
 							tv2.setText("Score: " + score);
