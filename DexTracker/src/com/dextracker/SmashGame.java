@@ -61,11 +61,12 @@ public class SmashGame extends BaseGameActivity {
 							if(getApiClient().isConnected())
 							{
 								Games.Leaderboards.submitScore(getApiClient(), getString(R.string.smash_leaderboard), score);
-								if(score>=200){
-									Games.Achievements.unlock(getApiClient(), getString(R.string.expert_smash_achiv));
-								}else if(score>=230){
+								if(score>=230){
 									Games.Achievements.unlock(getApiClient(), getString(R.string.goldfinger_achiv));
 								}
+								if(score>=200){
+									Games.Achievements.unlock(getApiClient(), getString(R.string.expert_smash_achiv));
+								} 
 							}
 							tv2 = (TextView) findViewById(R.id.textView2);
 							tv2.setText("Score: " + score);
@@ -198,7 +199,7 @@ public class SmashGame extends BaseGameActivity {
 		}
 
 		int value = Integer.parseInt((v.getTag().toString()));
-		if(order[value] < 3)
+		if(order[value] < 2)
 		{
 			score +=3;
 		}
@@ -216,7 +217,7 @@ public class SmashGame extends BaseGameActivity {
 	}
 
 	private void assignColor(Button btn, int num){
-		if(num < 3 ){
+		if(num < 2 ){
 			btn.setBackgroundResource(R.drawable.green_smash_button);
 		}
 		else if(num < 9){
@@ -229,6 +230,8 @@ public class SmashGame extends BaseGameActivity {
 
 	private void resetScore() {
 		score = 0;
+		miss = 0;
+		
 
 	}
 

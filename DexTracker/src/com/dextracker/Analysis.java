@@ -101,7 +101,7 @@ public class Analysis extends Activity {
 				}
 				catch(Exception ex){
 					ex.printStackTrace();
-					Toast.makeText(getApplicationContext(), "Error retrieving scores", Toast.LENGTH_LONG).show();
+					Toast.makeText(getApplicationContext(), "No scores submitted yet", Toast.LENGTH_LONG).show();
 				}
 			}
     });

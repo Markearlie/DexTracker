@@ -261,6 +261,9 @@ int menu type_game 0x7f0d0009
 int menu type_right_game 0x7f0d000a
 int raw gtm_analytics 0x7f050000
 int string accept 0x7f070002
+int string achievement_quick_fingers 0x7f07004c
+int string achievement_quicker_fingers 0x7f07004d
+int string achievement_quickest_fingers 0x7f07004e
 int string action_settings 0x7f07002d
 int string app_id 0x7f070040
 int string app_misconfigured 0x7f070028
@@ -330,7 +333,7 @@ int string title_activity_leaderboard_menu 0x7f070045
 int string title_activity_main 0x7f07003d
 int string title_activity_main_menu 0x7f070032
 int string title_activity_settings 0x7f07003c
-int string title_activity_splash_screen 0x7f07004c
+int string title_activity_splash_screen 0x7f07004f
 int string title_activity_type_game 0x7f07003e
 int string title_activity_type_right_game 0x7f070046
 int string type_left_leaderboard 0x7f070043

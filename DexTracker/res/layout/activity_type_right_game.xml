@@ -5,6 +5,7 @@
     android:layout_height="match_parent"
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
+    android:background="#ffffff"
     tools:context="com.dextracker.TypeRightGame" >
 
     <LinearLayout
@@ -19,8 +20,8 @@
             android:layout_weight="1"
             android:gravity="center"
             android:text="30"
-            android:paddingTop="16dp"
-            android:paddingBottom="16dp"
+            android:paddingTop="8dp"
+            android:paddingBottom="8dp"
             android:textAppearance="?android:attr/textAppearanceLarge" />
     </LinearLayout>
 
@@ -105,14 +106,15 @@
         android:paddingBottom="16dp"
         android:layout_below="@+id/letterBelt" >
 
-        <TextView
-            android:id="@+id/currentWord"
-            android:layout_width="100dp"
-            android:layout_height="wrap_content"
-            android:background="@drawable/back"
-            android:text="Your Text" />
+            <TextView 
+                android:id="@+id/currentWord"
+                android:layout_height="wrap_content"
+                android:layout_width="120dp"
+                android:text=""
+                android:textSize="24sp"
+                android:background="@drawable/back"
+                />
     </LinearLayout>
-
     <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

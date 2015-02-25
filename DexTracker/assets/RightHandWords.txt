@@ -22,7 +22,6 @@ bon
 bonbon
 bonk
 boo
-boob
 booboo
 boohoo
 book
@@ -248,7 +247,6 @@ pomp
 pompom
 pooh
 pool
-poop
 pop
 poplin
 pub

@@ -640,6 +640,9 @@ containing a value of this type.
     }
     public static final class string {
         public static final int accept=0x7f070002;
+        public static final int achievement_quick_fingers=0x7f07004c;
+        public static final int achievement_quicker_fingers=0x7f07004d;
+        public static final int achievement_quickest_fingers=0x7f07004e;
         public static final int action_settings=0x7f07002d;
         public static final int app_id=0x7f070040;
         public static final int app_misconfigured=0x7f070028;
@@ -780,7 +783,7 @@ containing a value of this type.
         public static final int title_activity_main=0x7f07003d;
         public static final int title_activity_main_menu=0x7f070032;
         public static final int title_activity_settings=0x7f07003c;
-        public static final int title_activity_splash_screen=0x7f07004c;
+        public static final int title_activity_splash_screen=0x7f07004f;
         public static final int title_activity_type_game=0x7f07003e;
         public static final int title_activity_type_right_game=0x7f070046;
         public static final int type_left_leaderboard=0x7f070043;

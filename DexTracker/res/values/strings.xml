@@ -34,6 +34,9 @@
     <string name="expert_type_achiv">CgkI-KbngNgSEAIQCA</string>
     <string name="expert_smash_achiv">CgkI-KbngNgSEAIQCQ</string>
     <string name="goldfinger_achiv">CgkI-KbngNgSEAIQCg</string>
+    <string name="achievement_quick_fingers">CgkI-KbngNgSEAIQDg</string>
+    <string name="achievement_quicker_fingers">CgkI-KbngNgSEAIQDw</string>
+    <string name="achievement_quickest_fingers">CgkI-KbngNgSEAIQEA</string>
 
     <string-array name="game_modes">
         <item>Sequential</item>

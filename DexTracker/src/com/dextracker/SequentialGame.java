@@ -59,6 +59,15 @@ public class SequentialGame extends BaseGameActivity{
 							if(getApiClient().isConnected())
 							{
 								Games.Leaderboards.submitScore(getApiClient(), getString(R.string.sequential_leaderboard), score);
+								if(score>=60){
+									Games.Achievements.unlock(getApiClient(), getString(R.string.achievement_quickest_fingers));
+								}
+								if(score>=45){
+									Games.Achievements.unlock(getApiClient(), getString(R.string.achievement_quicker_fingers));
+								}
+								if(score>=30){
+									Games.Achievements.unlock(getApiClient(), getString(R.string.achievement_quick_fingers));
+								}
 							}
 							tv6.setText("30");
 							createNumberLabel();
