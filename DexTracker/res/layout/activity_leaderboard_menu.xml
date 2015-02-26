@@ -50,7 +50,7 @@
             android:layout_marginRight="16dp"
             android:layout_weight="1"
             android:background="#2194f3"
-            android:text="Sequential"
+            android:text="Numbers"
             android:textColor="#ffffff" />
 
         <Button
@@ -59,7 +59,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:background="#66BB6A"
-            android:text="Sequential"
+            android:text="Numbers"
             android:textColor="#ffffff" />
     </LinearLayout>
 
@@ -75,7 +75,7 @@
             android:layout_marginRight="16dp"
             android:layout_weight="1"
             android:background="#2194f3"
-            android:text="Type (Left)"
+            android:text="Letters (Left)"
             android:textColor="#ffffff" />
 
         <Button
@@ -84,7 +84,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:background="#66BB6A"
-            android:text="Type (Left)"
+            android:text="Letters (Left)"
             android:textColor="#ffffff" />
     </LinearLayout>
 
@@ -100,7 +100,7 @@
             android:layout_marginRight="16dp"
             android:layout_weight="1"
             android:background="#2194f3"
-            android:text="Type (Right)"
+            android:text="Letters (Right)"
             android:textColor="#ffffff" />
 
         <Button
@@ -109,7 +109,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:background="#66BB6A"
-            android:text="Type (Right)"
+            android:text="Letters (Right)"
             android:textColor="#ffffff" />
     </LinearLayout>
 
