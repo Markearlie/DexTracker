@@ -11,89 +11,110 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.Toast;
 
 public class LeaderboardMenu extends BaseGameActivity {
 	Context ctx = this;
-	
+
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_leaderboard_menu);
-		
+
 		final Button button1 = (Button) findViewById(R.id.btnSeqLocal);
-        button1.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
-    			Intent intent = new Intent(ctx, Leaderboard.class);
-    			Bundle b = new Bundle();
-    			b.putInt("pos", 0);
-    			intent.putExtras(b);
-    			startActivity(intent);
-            }
-        });
-        final Button button2 = (Button) findViewById(R.id.btnTypeRightLocal);
-        button2.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
-            	Intent intent = new Intent(ctx, Leaderboard.class);
-            	Bundle b = new Bundle();
-    			b.putInt("pos", 2);
-    			intent.putExtras(b);
-    			startActivity(intent);
-            }
-        });
-        final Button button3 = (Button) findViewById(R.id.btnTypeLeftLocal);
-        button3.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
-            	Intent intent = new Intent(ctx, Leaderboard.class);
-            	Bundle b = new Bundle();
-    			b.putInt("pos", 1);
-    			intent.putExtras(b);
-    			startActivity(intent);
-            }
-        });
-        final Button button4 = (Button) findViewById(R.id.btnSmashLocal);
-        button4.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
-            	Intent intent = new Intent(ctx, Leaderboard.class);
-            	Bundle b = new Bundle();
-    			b.putInt("pos", 3);
-    			intent.putExtras(b);
-    			startActivity(intent);
-            }
-        });
-        final Button button5 = (Button) findViewById(R.id.btnSeqOnline);
-        button5.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
-            	startActivityForResult(Games.Leaderboards.getLeaderboardIntent(
-    	    	        getApiClient(), getString(R.string.sequential_leaderboard)), 2);
-            }
-        });
-        final Button button6 = (Button) findViewById(R.id.btnTypeLeftOnline);
-        button6.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
-            	startActivityForResult(Games.Leaderboards.getLeaderboardIntent(
-    	    	        getApiClient(), getString(R.string.type_left_leaderboard)), 2);
-            }
-        });
-        final Button button7 = (Button) findViewById(R.id.btnTypeRightOnline);
-        button7.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
-            	startActivityForResult(Games.Leaderboards.getLeaderboardIntent(
-    	    	        getApiClient(), getString(R.string.type_right_leaderboard)), 2);
-            }
-        });
-        final Button button8 = (Button) findViewById(R.id.btnSmashOnline);
-        button8.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
-            	startActivityForResult(Games.Leaderboards.getLeaderboardIntent(
-    	    	        getApiClient(), getString(R.string.smash_leaderboard)), 2);
-            }
-        });
-        final Button button9 = (Button) findViewById(R.id.btnAchievements);
-        button9.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
-            	startActivityForResult(Games.Achievements.getAchievementsIntent(getApiClient()), 2);
-            }
-        });
+		button1.setOnClickListener(new View.OnClickListener() {
+			public void onClick(View v) {
+				Intent intent = new Intent(ctx, Leaderboard.class);
+				Bundle b = new Bundle();
+				b.putInt("pos", 0);
+				intent.putExtras(b);
+				startActivity(intent);
+			}
+		});
+		final Button button2 = (Button) findViewById(R.id.btnTypeRightLocal);
+		button2.setOnClickListener(new View.OnClickListener() {
+			public void onClick(View v) {
+				Intent intent = new Intent(ctx, Leaderboard.class);
+				Bundle b = new Bundle();
+				b.putInt("pos", 2);
+				intent.putExtras(b);
+				startActivity(intent);
+			}
+		});
+		final Button button3 = (Button) findViewById(R.id.btnTypeLeftLocal);
+		button3.setOnClickListener(new View.OnClickListener() {
+			public void onClick(View v) {
+				Intent intent = new Intent(ctx, Leaderboard.class);
+				Bundle b = new Bundle();
+				b.putInt("pos", 1);
+				intent.putExtras(b);
+				startActivity(intent);
+			}
+		});
+		final Button button4 = (Button) findViewById(R.id.btnSmashLocal);
+		button4.setOnClickListener(new View.OnClickListener() {
+			public void onClick(View v) {
+				Intent intent = new Intent(ctx, Leaderboard.class);
+				Bundle b = new Bundle();
+				b.putInt("pos", 3);
+				intent.putExtras(b);
+				startActivity(intent);
+			}
+		});
+		final Button button5 = (Button) findViewById(R.id.btnSeqOnline);
+		button5.setOnClickListener(new View.OnClickListener() {
+			public void onClick(View v) {
+				if(getApiClient().isConnected()){
+					startActivityForResult(Games.Leaderboards.getLeaderboardIntent(
+							getApiClient(), getString(R.string.sequential_leaderboard)), 2);
+				}else{
+					Toast.makeText(getApplicationContext(), "Network connection required", Toast.LENGTH_SHORT).show();
+				}
+			}
+		});
+		final Button button6 = (Button) findViewById(R.id.btnTypeLeftOnline);
+		button6.setOnClickListener(new View.OnClickListener() {
+			public void onClick(View v) {
+				if(getApiClient().isConnected()){
+					startActivityForResult(Games.Leaderboards.getLeaderboardIntent(
+							getApiClient(), getString(R.string.type_left_leaderboard)), 2);
+				}else{
+					Toast.makeText(getApplicationContext(), "Network connection required", Toast.LENGTH_SHORT).show();
+				}
+			}
+		});
+		final Button button7 = (Button) findViewById(R.id.btnTypeRightOnline);
+		button7.setOnClickListener(new View.OnClickListener() {
+			public void onClick(View v) {
+				if(getApiClient().isConnected()){
+					startActivityForResult(Games.Leaderboards.getLeaderboardIntent(
+							getApiClient(), getString(R.string.type_right_leaderboard)), 2);
+				}else{
+					Toast.makeText(getApplicationContext(), "Network connection required", Toast.LENGTH_SHORT).show();
+				}
+			}
+		});
+		final Button button8 = (Button) findViewById(R.id.btnSmashOnline);
+		button8.setOnClickListener(new View.OnClickListener() {
+			public void onClick(View v) {
+				if(getApiClient().isConnected()){
+					startActivityForResult(Games.Leaderboards.getLeaderboardIntent(
+							getApiClient(), getString(R.string.smash_leaderboard)), 2);
+				}else{
+					Toast.makeText(getApplicationContext(), "Network connection required", Toast.LENGTH_SHORT).show();
+				}
+			}
+		});
+		final Button button9 = (Button) findViewById(R.id.btnAchievements);
+		button9.setOnClickListener(new View.OnClickListener() {
+			public void onClick(View v) {
+				if(getApiClient().isConnected()){
+					startActivityForResult(Games.Achievements.getAchievementsIntent(getApiClient()), 2);
+				}else{
+					Toast.makeText(getApplicationContext(), "Network connection required", Toast.LENGTH_SHORT).show();
+				}
+			}
+		});
 	}
 
 	@Override
@@ -118,12 +139,12 @@ public class LeaderboardMenu extends BaseGameActivity {
 	@Override
 	public void onSignInFailed() {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override
 	public void onSignInSucceeded() {
 		// TODO Auto-generated method stub
-		
+
 	}
 }

@@ -9,27 +9,42 @@
     android:background="#ffffff" >
 
     <LinearLayout
-        android:id="@+id/timeLayout"
+        android:id="@+id/LinearLayout2"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" >
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
+        android:layout_marginTop="8dp" >
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="4"
+            android:gravity="right"
+            android:paddingRight="8dp" >
+
+            <ImageView
+                android:id="@+id/imageView1"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:background="@drawable/clock" />
+        </LinearLayout>
 
         <TextView
             android:id="@+id/textView6"
             android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:gravity="center"
+            android:layout_height="match_parent"
+            android:layout_weight="4"
+            android:gravity="center|left"
+            android:paddingLeft="8dp"
             android:text="30"
-                        android:paddingTop="8dp"
-            android:paddingBottom="8dp"
-            android:textAppearance="?android:attr/textAppearanceLarge" />
+            android:textSize="24sp" />
     </LinearLayout>
 
     <LinearLayout
                 android:id="@+id/letterBelt"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" 
-        android:layout_below="@+id/timeLayout" >
+        android:layout_below="@+id/LinearLayout2" >
 
 
         <TextView
@@ -124,8 +139,7 @@
 
     <FrameLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_weight="0.5"
+        android:layout_height="fill_parent"
         android:layout_below="@+id/currWordBelt" >
 
         <TableLayout

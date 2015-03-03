@@ -70,7 +70,7 @@ public class Analysis extends Activity {
 				public void onItemSelected(AdapterView<?> parent, View view,
 						int position, long id) {
 					try{
-						ArrayList<Score> scores = dao.getLast10PlayerScores(players.get(spnPlayers.getSelectedItemPosition()), spnModes.getSelectedItem().toString());
+						ArrayList<Score> scores = dao.getLast10PlayerScores(players.get(spnPlayers.getSelectedItemPosition()), convertToActual(spnModes.getSelectedItem().toString()));
 						Number[] lastScores = createArray(scores);
 						drawChart(lastScores);
 						
@@ -95,7 +95,7 @@ public class Analysis extends Activity {
 			public void onItemSelected(AdapterView<?> parent, View view,
 					int position, long id) {
 				try{
-					ArrayList<Score> scores = dao.getLast10PlayerScores(players.get(spnPlayers.getSelectedItemPosition()), spnModes.getSelectedItem().toString());
+					ArrayList<Score> scores = dao.getLast10PlayerScores(players.get(spnPlayers.getSelectedItemPosition()), convertToActual(spnModes.getSelectedItem().toString()));
 					Number[] lastScores = createArray(scores);
 					drawChart(lastScores);		
 				}
@@ -106,6 +106,19 @@ public class Analysis extends Activity {
 			}
     });
 		
+	}
+	
+	private String convertToActual(String newText){
+		if(newText.equalsIgnoreCase("Numbers")){
+			return "Sequential";
+		}else if(newText.equalsIgnoreCase("Letters Left")){
+			return "TypeRight";
+		}else if(newText.equalsIgnoreCase("Letters Right")){
+			return "TypeLeft";
+		}else if(newText.equalsIgnoreCase("Smash")){
+			return "Smash";
+		}else
+			return "Sequential";
 	}
 
 	private Number[] createArray(ArrayList<Score> scores){

@@ -39,9 +39,9 @@
     <string name="achievement_quickest_fingers">CgkI-KbngNgSEAIQEA</string>
 
     <string-array name="game_modes">
-        <item>Sequential</item>
-        <item>TypeRight</item>
-        <item>TypeLeft</item>
+        <item>Numbers</item>
+        <item>Letters Left</item>
+        <item>Letters Right</item>
         <item>Smash</item>
     </string-array>
 
